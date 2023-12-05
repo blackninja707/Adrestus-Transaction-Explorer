@@ -1,25 +1,41 @@
-import { UserGroup, Discord, Bookmark, Telegram, Twitter } from "../svgfile";
+import { Icon } from "@iconify/react";
 
 const SocialLink = [
   {
     link: "/",
-    container: <UserGroup width={24} height={24} />,
+    container: (
+      <Icon icon="heroicons:users-solid" color="white" width="18" height="18" />
+    ),
   },
   {
     link: "/",
-    container: <Discord width={24} height={24} />,
+    container: (
+      <Icon icon="ic:round-discord" color="white" width="18" height="18" />
+    ),
   },
   {
     link: "/",
-    container: <Bookmark width={24} height={24} />,
+    container: (
+      <Icon icon="solar:bookmark-bold" color="white" width="18" height="18" />
+    ),
   },
   {
     link: "/",
-    container: <Telegram width={24} height={24} />,
+    container: (
+      <Icon
+        icon="file-icons:telegram"
+        color="white"
+        width="18"
+        height="18"
+        className="pr-[2px]"
+      />
+    ),
   },
   {
     link: "/",
-    container: <Twitter width={24} height={24} />,
+    container: (
+      <Icon icon="ri:twitter-x-fill" color="white" width="18" height="18" />
+    ),
   },
 ];
 
