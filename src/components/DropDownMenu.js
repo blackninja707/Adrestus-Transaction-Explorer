@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Icon } from "@iconify/react";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -10,12 +10,9 @@ const DropDownMenu = ({ title, content }) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-bold text-[14px] leading-[20px] text-white">
+        <Menu.Button className="inline-flex w-full justify-center items-center gap-[2px] rounded-md bg-transparent px-3 py-2 text-sm font-bold text-[14px] leading-[20px] text-white">
           {title}
-          <ChevronDownIcon
-            className="-mr-1 h-5 w-5 text-white"
-            aria-hidden="true"
-          />
+          <Icon icon="ri:arrow-down-s-fill" width="24" height="24" />
         </Menu.Button>
       </div>
 
