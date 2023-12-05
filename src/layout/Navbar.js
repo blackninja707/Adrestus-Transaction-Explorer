@@ -7,8 +7,12 @@ import MenuItems from "../utilities/MenuItems";
 const Navbar = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [tokenButton, setTokenButton] = useState(false);
   const OpenMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+  const handleTokenButton = () => {
+    setTokenButton(!tokenButton);
   };
   const handleWindowResize = () => {
     setWindowWidth(window.innerWidth);
@@ -38,16 +42,43 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row max-w-full min-w-0 min-h-0">
+          <div className="flex flex-row max-w-full min-w-0 min-h-0 gap-2 ad:gap-10">
             <div className="flex items-center flex-row">
-              <div className="pr-4 hidden min-[961px]:flex">
+              <div className="pr-4 ad:hidden flex">
                 <span className="text-white text-[14px] leading-[20px]">
                   Address Format
                 </span>
               </div>
-              <div className=""></div>
+              <div className="flex flex-row max-w-full relative select-box text-[14px]">
+                <div
+                  id="TokenButton"
+                  className={`left-select ${
+                    tokenButton ? "translate-x-full" : "translate-x-0"
+                  }`}
+                ></div>
+                <div
+                  className={`middle-select ${
+                    tokenButton
+                      ? "text-colorSeparator cursor-pointer"
+                      : "text-primary cursor-auto"
+                  }`}
+                  onClick={handleTokenButton}
+                >
+                  ADT
+                </div>
+                <div
+                  className={`right-select ${
+                    tokenButton
+                      ? "text-primary cursor-auto"
+                      : "text-colorSeparator cursor-pointer"
+                  }`}
+                  onClick={handleTokenButton}
+                >
+                  ETH
+                </div>
+              </div>
             </div>
-            <div className="hidden items-center flex-row min-[961px]:flex">
+            <div className="ad:hidden items-center flex-row flex">
               {MenuItems.map((item, index) => {
                 return (
                   <DropDownMenu
@@ -60,7 +91,7 @@ const Navbar = () => {
             </div>
             <div
               id="hamburger_menu"
-              className="flex-end flex min-[961px]:hidden"
+              className="flex-end ad:flex hidden"
               onClick={OpenMenu}
             >
               {!isMenuOpen ? (

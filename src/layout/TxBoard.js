@@ -1,7 +1,7 @@
 import { TxPanelHeaderParams, TxPanelBodyParams } from "../utilities/TxParams";
 const TxBoard = () => {
   return (
-    <div className="flex flex-col p-0 bg-white border-[1px] border-colorSeparator rounded-lg max-w-full w-1/2">
+    <div className="flex flex-col p-0 bg-white border-[1px] border-colorSeparator rounded-lg max-w-full w-[49%]">
       <div className="p-4 h-[62px] border-b-[1px] border-colorSeparator flex flex-row justify-between items-center">
         <span className="text-[18px] leading-[24px] font-bold text-fontSecondary">
           Latest Transactions

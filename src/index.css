@@ -16,3 +16,40 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.select-box {
+  box-shadow: rgb(243, 243, 243) 0px 0px 0px 1px inset;
+  border-radius: 8px;
+}
+
+.left-select {
+  position: absolute;
+  overflow: hidden;
+  width: 50%;
+  height: 100%;
+  border-radius: 8px;
+  pointer-events: none;
+  background-color: rgb(243, 243, 243);
+  transition: transform 150ms ease-in-out 0s;
+}
+.middle-select {
+  padding: 4px 10px;
+  min-width: 20px;
+  font-weight: 700;
+  user-select: none;
+  outline: none;
+  text-align: center;
+  z-index: 1;
+  transition: color 100ms ease-in-out 0s;
+}
+
+.right-select {
+  padding: 4px 10px;
+  min-width: 20px;
+  font-weight: 700;
+  user-select: none;
+  outline: none;
+  text-align: center;
+  z-index: 1;
+  transition: color 100ms ease-in-out 0s;
+}
