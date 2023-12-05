@@ -2,7 +2,7 @@ import SocialLink from "../utilities/SocialLink";
 
 const Footer = () => {
   return (
-    <div className="w-full pt-6">
+    <div className="w-full h-[110px]">
       <div className="bg-white p-6 flex items-center justify-center">
         <div className="flex flex-col">
           <div className="w-80 flex flex-row justify-center items-center max-w-full gap-7">
