@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import DropDownMenu from "../components/DropDownMenu";
 import MobileDropDown from "../components/MobileDropDown";
+import MobileColorTheme from "../components/MobileColorTheme";
 import MenuItems from "../utilities/MenuItems";
 
-const Navbar = () => {
+const Navbar = ({ darkModeEnabled, toggleMode }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [tokenButton, setTokenButton] = useState(false);
@@ -27,12 +28,12 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="w-full py-3 bg-primary shadow-[0px_4px_8px_rgba(0,0,0,0.12)]">
+      <div className="w-full py-3 bg-primary dark:bg-darkPrimary shadow-[0px_4px_8px_rgba(0,0,0,0.12)]">
         <div className="max-w-[1408px] min-w-[343px] w-full flex flex-row justify-between items-center px-5 mx-auto">
           <div className="max-w-[384px] m-0 cursor-pointer text-white text-[16px] leading-[22px] font-semibold">
             <div className="flex flex-row max-w-full items-center">
               <img src="./Adrestus.svg" alt="logo" />
-              <div className="flex-col items-start justify-between pl-[7px] pt-2 hidden min-[961px]:flex">
+              <div className="flex-col items-start justify-between pl-[7px] pt-2 ad:hidden flex">
                 <span className="text-[1.2em] leading-[0.5em] m-0 p-0">
                   Adrestus
                 </span>
@@ -49,10 +50,10 @@ const Navbar = () => {
                   Address Format
                 </span>
               </div>
-              <div className="flex flex-row max-w-full relative select-box text-[14px]">
+              <div className="flex flex-row max-w-full relative rounded-[8px] text-[14px] shadow-[0_0_0_1px_rgb(243,243,243)_inset] dark:shadow-[0_0_0_1px_rgb(3,9,33)_inset]">
                 <div
                   id="TokenButton"
-                  className={`left-select ${
+                  className={`left-select bg-[#f3f3f3] dark:bg-[#030921] ${
                     tokenButton ? "translate-x-full" : "translate-x-0"
                   }`}
                 ></div>
@@ -60,7 +61,7 @@ const Navbar = () => {
                   className={`middle-select ${
                     tokenButton
                       ? "text-colorSeparator cursor-pointer"
-                      : "text-primary cursor-auto"
+                      : "text-primary dark:text-darkIconColor cursor-auto"
                   }`}
                   onClick={handleTokenButton}
                 >
@@ -69,7 +70,7 @@ const Navbar = () => {
                 <div
                   className={`right-select ${
                     tokenButton
-                      ? "text-primary cursor-auto"
+                      ? "text-primary dark:text-darkIconColor cursor-auto"
                       : "text-colorSeparator cursor-pointer"
                   }`}
                   onClick={handleTokenButton}
@@ -114,10 +115,10 @@ const Navbar = () => {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="w-full py-2 min-[961px]:hidden flex flex-col">
+        <div className="w-full py-2 min-[961px]:hidden flex flex-col dark:bg-darkPrimary">
           <div className="py-1 px-4">
             <div className="p-2 flex flex-row justify-between items-center w-full">
-              <span className="text-[18px] leading-[24px] text-fontSecondary">
+              <span className="text-[18px] leading-[24px] text-fontSecondary dark:text-darkFontPrimary">
                 Home
               </span>
             </div>
@@ -131,6 +132,10 @@ const Navbar = () => {
               />
             );
           })}
+          <MobileColorTheme
+            darkModeEnabled={darkModeEnabled}
+            toggleMode={toggleMode}
+          />
         </div>
       )}
     </>

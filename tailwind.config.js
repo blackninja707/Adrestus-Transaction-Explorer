@@ -2,6 +2,7 @@ const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
+  darkMode: ["class"],
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -30,6 +31,9 @@ module.exports = {
         fontPrimary: "#758796",
         fontSecondary: "#55626D",
         colorSeparator: "#E7ECF7",
+        darkFontPrimary: "#F8F8F8",
+        darkPrimary: "#1b2a5e",
+        darkIconColor: "#69FABD",
       },
     },
   },
