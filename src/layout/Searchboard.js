@@ -13,7 +13,7 @@ const Searchboard = () => {
           />
         </div>
         <input
-          className="p-[10px] pl-12 w-full rounded-lg font-medium text-[14px] border-colorSeparator dark:border-darkColorSeparator border-[1px] focus:outline-none bg-white dark:bg-transparent"
+          className="p-[10px] pl-12 w-full rounded-lg font-medium text-[14px] border-colorSeparator dark:border-darkColorSeparator border-[1px] focus:outline-none bg-white dark:bg-transparent dark:text-darkFontPrimary"
           placeholder="Search by Address / Transaction Hash / Block / Token"
         ></input>
       </div>
