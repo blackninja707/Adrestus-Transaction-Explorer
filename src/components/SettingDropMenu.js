@@ -6,7 +6,7 @@ const SettingDropMenu = ({ darkModeEnabled, toggleMode }) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm">
+        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-gray-900">
           <Icon icon="uiw:setting-o" width={24} height={24} color="white" />
         </Menu.Button>
       </div>

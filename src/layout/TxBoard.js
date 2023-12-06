@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { TxPanelHeaderParams, TxPanelBodyParams } from "../utilities/TxParams";
+
 const TxBoard = () => {
   return (
     <div className="flex flex-col p-0 bg-white dark:bg-darkPrimary border-[1px] border-colorSeparator dark:border-darkColorSeparator rounded-lg max-w-full w-[49%]">
@@ -35,24 +37,30 @@ const TxBoard = () => {
                     key={index}
                   >
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <div className="max-w-[125px] text-fontPrimary dark:text-darkIconColor">
-                        {item.Hash}
-                      </div>
+                      <Link to={`/tx/${item.Hash}`}>
+                        <div className="max-w-[125px]  text-primary dark:text-darkIconColor">
+                          {item.Hash}
+                        </div>
+                      </Link>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <div className="max-w-[125px] text-primary ">
+                      <div className="max-w-[125px] text-fontPrimary">
                         {item.TxType}
                       </div>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <div className="max-w-[125px] text-primary dark:text-darkIconColor">
-                        {item.From}
-                      </div>
+                      <Link to={`/address/${item.From}`}>
+                        <div className="max-w-[125px] text-primary dark:text-darkIconColor">
+                          {item.From}
+                        </div>
+                      </Link>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <div className="max-w-[125px] text-primary dark:text-darkIconColor">
-                        {item.To}
-                      </div>
+                      <Link to={`/address/${item.To}`}>
+                        <div className="max-w-[125px] text-primary dark:text-darkIconColor">
+                          {item.To}
+                        </div>
+                      </Link>
                     </td>
                     <td className="text-left py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <span className="max-w-[125px] text-fontPrimary">
@@ -66,9 +74,11 @@ const TxBoard = () => {
           </table>
         </div>
         <div className="w-full pt-6">
-          <button className="w-full border-[1px] border-colorSeparator dark:border-darkColorSeparator text-primary dark:text-darkIconColor text-[12px] font-bold rounded-[4px] py-2 px-[5px] bg-transparent transition-all duration-300 delay-0 hover:tracking-[0.3px]">
-            VIEW ALL TRANSACTIONS
-          </button>
+          <Link to="/transactions/">
+            <button className="w-full border-[1px] border-colorSeparator dark:border-darkColorSeparator text-primary dark:text-darkIconColor text-[12px] font-bold rounded-[4px] py-2 px-[5px] bg-transparent transition-all duration-300 delay-0 hover:tracking-[0.3px]">
+              VIEW ALL TRANSACTIONS
+            </button>
+          </Link>
         </div>
       </div>
     </div>
