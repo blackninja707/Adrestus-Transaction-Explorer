@@ -2,4 +2,4 @@
 
 Adrestus Transaction Explorer
 
-React, Tailwind CSS
+React, Recoil, Tailwind CSS
