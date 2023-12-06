@@ -37,7 +37,7 @@ const DropDownMenu = ({ title, content }) => {
                         active
                           ? "bg-gray-100 dark:bg-black text-gray-900 dark:text-darkIconColor"
                           : "text-gray-700 dark:text-darkFontPrimary",
-                        "block px-4 py-2 text-sm"
+                        "block px-4 py-2 text-sm border-b-[1px] border-colorSeparator dark:border-darkColorSeparator last:border-none"
                       )}
                     >
                       {item.content_title}

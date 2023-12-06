@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Icon } from "@iconify/react";
 import DropDownMenu from "../components/DropDownMenu";
 import MobileDropDown from "../components/MobileDropDown";
 import MobileColorTheme from "../components/MobileColorTheme";
 import MenuItems from "../utilities/MenuItems";
+import SettingDropMenu from "../components/SettingDropMenu";
 
 const Navbar = ({ darkModeEnabled, toggleMode }) => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [tokenButton, setTokenButton] = useState(false);
   const OpenMenu = () => {
@@ -15,16 +15,6 @@ const Navbar = ({ darkModeEnabled, toggleMode }) => {
   const handleTokenButton = () => {
     setTokenButton(!tokenButton);
   };
-  const handleWindowResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
-    // if (windowWidth > 960) setIsMenuOpen(true);
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, [window.innerWidth]);
 
   return (
     <>
@@ -89,6 +79,10 @@ const Navbar = ({ darkModeEnabled, toggleMode }) => {
                   />
                 );
               })}
+              <SettingDropMenu
+                darkModeEnabled={darkModeEnabled}
+                toggleMode={toggleMode}
+              />
             </div>
             <div
               id="hamburger_menu"

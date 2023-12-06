@@ -55,3 +55,17 @@ code {
   z-index: 1;
   transition: color 100ms ease-in-out 0s;
 }
+
+#Scrollbar::-webkit-scrollbar {
+  height: 12px;
+}
+#Scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+  border: 1.5px solid #7e7e7e;
+  border-radius: 8px;
+}
+#Scrollbar::-webkit-scrollbar-thumb {
+  background-color: #f1f1f1;
+  border: 2px solid #616161;
+  border-radius: 8px;
+}

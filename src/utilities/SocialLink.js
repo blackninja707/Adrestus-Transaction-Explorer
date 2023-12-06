@@ -4,37 +4,56 @@ const SocialLink = [
   {
     link: "/",
     container: (
-      <Icon icon="heroicons:users-solid" color="white" width="18" height="18" />
-    ),
-  },
-  {
-    link: "/",
-    container: (
-      <Icon icon="ic:round-discord" color="white" width="18" height="18" />
-    ),
-  },
-  {
-    link: "/",
-    container: (
-      <Icon icon="solar:bookmark-bold" color="white" width="18" height="18" />
-    ),
-  },
-  {
-    link: "/",
-    container: (
       <Icon
-        icon="file-icons:telegram"
-        color="white"
+        icon="heroicons:users-solid"
         width="18"
         height="18"
-        className="pr-[2px]"
+        className="text-white dark:text-darkIconColor"
       />
     ),
   },
   {
     link: "/",
     container: (
-      <Icon icon="ri:twitter-x-fill" color="white" width="18" height="18" />
+      <Icon
+        icon="ic:round-discord"
+        className="text-white dark:text-darkIconColor"
+        width="18"
+        height="18"
+      />
+    ),
+  },
+  {
+    link: "/",
+    container: (
+      <Icon
+        icon="solar:bookmark-bold"
+        className="text-white dark:text-darkIconColor"
+        width="18"
+        height="18"
+      />
+    ),
+  },
+  {
+    link: "/dashboard",
+    container: (
+      <Icon
+        icon="file-icons:telegram"
+        className="text-white dark:text-darkIconColor pr-[2px]"
+        width="18"
+        height="18"
+      />
+    ),
+  },
+  {
+    link: "/",
+    container: (
+      <Icon
+        icon="ri:twitter-x-fill"
+        className="text-white dark:text-darkIconColor"
+        width="18"
+        height="18"
+      />
     ),
   },
 ];
