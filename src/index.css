@@ -21,7 +21,10 @@ code {
   box-shadow: rgb(243, 243, 243) 0px 0px 0px 1px inset;
   border-radius: 8px;
 }
-
+.dark.select-box {
+  box-shadow: rgb(3, 9, 33) 0px 0px 0px 1px inset;
+  border-radius: 8px;
+}
 .left-select {
   position: absolute;
   overflow: hidden;
@@ -29,7 +32,6 @@ code {
   height: 100%;
   border-radius: 8px;
   pointer-events: none;
-  background-color: rgb(243, 243, 243);
   transition: transform 150ms ease-in-out 0s;
 }
 .middle-select {
@@ -52,4 +54,18 @@ code {
   text-align: center;
   z-index: 1;
   transition: color 100ms ease-in-out 0s;
+}
+
+#Scrollbar::-webkit-scrollbar {
+  height: 12px;
+}
+#Scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+  border: 1.5px solid #7e7e7e;
+  border-radius: 8px;
+}
+#Scrollbar::-webkit-scrollbar-thumb {
+  background-color: #f1f1f1;
+  border: 2px solid #616161;
+  border-radius: 8px;
 }

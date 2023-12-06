@@ -5,7 +5,7 @@ import TxBoard from "./TxBoard";
 
 const MainLayout = () => {
   return (
-    <div className="w-full bg-board">
+    <div className="w-full bg-board dark:bg-[#030921]">
       <div className="max-w-[1408px] min-w-[343px] w-full flex flex-col justify-between items-center px-5 mx-auto">
         <Searchboard />
         <Dashboard />

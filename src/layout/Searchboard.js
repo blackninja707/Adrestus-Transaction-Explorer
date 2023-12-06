@@ -7,13 +7,13 @@ const Searchboard = () => {
         <div className="absolute top-1/2 flex translate-y-[-50%] left-3 pointer-events-none">
           <Icon
             icon="fluent:search-12-regular"
-            color="#00aee9"
             width="24"
             height="24"
+            className="text-primary dark:text-darkIconColor"
           />
         </div>
         <input
-          className="p-[10px] pl-12 w-full rounded-lg font-medium text-[14px] border-[#E7ECF7] border-[1px] focus:outline-none"
+          className="p-[10px] pl-12 w-full rounded-lg font-medium text-[14px] border-colorSeparator dark:border-darkColorSeparator border-[1px] focus:outline-none bg-white dark:bg-transparent"
           placeholder="Search by Address / Transaction Hash / Block / Token"
         ></input>
       </div>

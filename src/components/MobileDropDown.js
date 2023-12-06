@@ -7,14 +7,16 @@ const MobileDropDown = ({ title, content }) => {
     SetIsOpen(!IsOpen);
   };
   return (
-    <div className="py-1 px-4">
+    <div className="py-1 px-4 dark:bg-darkPrimary">
       <div
-        className="p-2 flex flex-row justify-between items-center w-full"
+        className="p-2 flex flex-row justify-between items-center w-full "
         onClick={OpenMenu}
       >
         <span
           className={`text-[16px] leading-[24px] font-semibold ${
-            !IsOpen ? "text-fontSecondary" : "text-primary"
+            !IsOpen
+              ? "text-fontSecondary dark:text-darkFontPrimary"
+              : "text-primary dark:text-darkIconColor"
           }`}
         >
           {title}
@@ -24,20 +26,20 @@ const MobileDropDown = ({ title, content }) => {
             icon="ri:arrow-down-s-fill"
             width="16"
             height="16"
-            color="#55626D"
+            className="text-fontSecondary dark:text-darkFontPrimary"
           />
         ) : (
           <Icon
             icon="ri:arrow-up-s-fill"
             width="16"
             height="16"
-            color="#00AEE9"
+            className="dark:text-darkIconColor text-[#00AEE9]"
           />
         )}
       </div>
       {IsOpen && (
         <div className="relative flex flex-col">
-          <div className="absolute ml-3 bg-primary text-fontSecondary flex flex-col w-[2px] h-full"></div>
+          <div className="absolute ml-3 bg-primary dark:bg-darkIconColor text-fontSecondary dark:text-darkFontPrimary flex flex-col w-[2px] h-full"></div>
           {content.map((item, index) => {
             return (
               <div
@@ -45,7 +47,7 @@ const MobileDropDown = ({ title, content }) => {
                 key={index}
               >
                 <a href={item.link}>
-                  <span className="text-[14px] leading-[20px]">
+                  <span className="text-[14px] leading-[20px] dark:text-darkFontPrimary">
                     {item.content_title}
                   </span>
                 </a>
