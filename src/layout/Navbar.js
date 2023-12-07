@@ -55,7 +55,7 @@ const Navbar = ({ darkModeEnabled, toggleMode }) => {
                   }`}
                   onClick={handleTokenButton}
                 >
-                  ADT
+                  ADR
                 </div>
                 <div
                   className={`right-select ${

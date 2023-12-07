@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { TxPanelHeaderParams, TxPanelBodyParams } from "../utilities/TxParams";
+import { abbreviateString } from "../utilities/abbreviateString.js";
 
 const TxBoard = () => {
   return (
@@ -39,7 +40,7 @@ const TxBoard = () => {
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <Link to={`/tx/${item.Hash}`}>
                         <div className="max-w-[125px]  text-primary dark:text-darkIconColor">
-                          {item.Hash}
+                          {abbreviateString(item.Hash)}
                         </div>
                       </Link>
                     </td>
@@ -51,14 +52,14 @@ const TxBoard = () => {
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <Link to={`/address/${item.From}`}>
                         <div className="max-w-[125px] text-primary dark:text-darkIconColor">
-                          {item.From}
+                          {abbreviateString(item.From)}
                         </div>
                       </Link>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <Link to={`/address/${item.To}`}>
                         <div className="max-w-[125px] text-primary dark:text-darkIconColor">
-                          {item.To}
+                          {abbreviateString(item.To)}
                         </div>
                       </Link>
                     </td>

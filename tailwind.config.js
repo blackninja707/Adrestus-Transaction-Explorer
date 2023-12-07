@@ -36,6 +36,7 @@ module.exports = {
         darkPrimary: "#1B295E",
         darkIconColor: "#69FABD",
         darkHeaderColor: "#5F98C7",
+        darkViewColor: "#6fffb0",
       },
     },
   },

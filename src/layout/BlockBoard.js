@@ -45,7 +45,7 @@ const BlockBoard = () => {
                       </div>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <Link to={`/block/${item.Hash}`}>
+                      <Link to={`/block/${item.Height}`}>
                         <div className="max-w-[125px] text-primary dark:text-darkIconColor">
                           {item.Height}
                         </div>
