@@ -11,7 +11,6 @@ import CSVExport from "../../components/ExplorerView/AddressView/CSVExport";
 
 const AddressExplorer = () => {
   const { id } = useParams();
-  console.log("========*===========", id);
   return (
     <>
       <div className="max-w-[1408px] min-w-[343px] w-full flex flex-col px-5 mx-auto pb-6">

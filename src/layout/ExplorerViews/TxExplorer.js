@@ -25,7 +25,7 @@ const TxExplorer = () => {
         <div className=" rounded-lg overflow-x-auto flex flex-col bg-white dark:bg-darkPrimary p-6 border-[1px] dark:border-darkColorSeparator border-colorSeparator">
           <div className="flex flex-col">
             <div className=""></div>
-            <div className="flex flex-start overflow-auto">
+            <div className="flex flex-start overflow-auto" id="Scrollbar">
               <table className="w-full min-w-[698px] relative border-spacing-0 border-separate h-auto">
                 <thead className="none"></thead>
                 <tbody className="">

@@ -7,7 +7,6 @@ const TimestampItem = ({ title, value }) => {
   const [copied, setCopied] = useState(false);
   const handleCopyClick = () => {
     setCopied(true);
-    console.log(title, "_State : ", copied);
   };
   return (
     <tr>
