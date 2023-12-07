@@ -12,15 +12,17 @@ const AddressView = ({ value }) => {
         <span className="w-4/5 break-all">
           <span className="max-w-[600px] transition-all rounded-sm flex flex-row w-full items-baseline">
             <div className="flex flex-row items-center gap-[5px]">
-              <CopyToClipboard text={value}>
-                <Icon
-                  icon="mingcute:copy-3-line"
-                  rotate={3}
-                  width={14}
-                  height={14}
-                  className="text-primary dark:text-darkViewColor mb-1 cursor-pointer"
-                />
-              </CopyToClipboard>
+              <span className="w-[14px]">
+                <CopyToClipboard text={value}>
+                  <Icon
+                    icon="mingcute:copy-3-line"
+                    rotate={3}
+                    width={14}
+                    height={14}
+                    className="text-primary dark:text-darkViewColor mb-1 cursor-pointer"
+                  />
+                </CopyToClipboard>
+              </span>
               <Link to={`/address/${value}`}>
                 <span className="text-[14px] text-primary dark:text-[#69FABD] leading-[20px]">
                   {value}
