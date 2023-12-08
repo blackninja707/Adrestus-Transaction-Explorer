@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 const SearchResultItem = ({ value }) => {
   const [searchState, setSearchState] = useState("");
   const [linkTo, setLinkTo] = useState("");
+  const handleSearch = () => {
+    window.location.href = `/${linkTo}/${value}`;
+  };
   useEffect(() => {
     if (value.length === 42) {
       setSearchState("Address");
@@ -26,7 +29,7 @@ const SearchResultItem = ({ value }) => {
         </span>
       </div>
       <div className="flex flex-row items-center pl-5 gap-[5px]">
-        <CopyToClipboard text="xxx">
+        <CopyToClipboard text={value}>
           <Icon
             icon="mingcute:copy-3-line"
             rotate={3}
@@ -35,11 +38,11 @@ const SearchResultItem = ({ value }) => {
             className="text-primary dark:text-darkViewColor cursor-pointer"
           />
         </CopyToClipboard>
-        <Link to={`/${linkTo}/${value}`}>
+        <div onClick={handleSearch} className="cursor-pointer">
           <span className="text-[14px] text-primary dark:text-[#69FABD] leading-[20px]">
             {value}
           </span>
-        </Link>
+        </div>
       </div>
     </div>
   );

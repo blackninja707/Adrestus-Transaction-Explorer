@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react";
 import { useCallback, useEffect, useState } from "react";
 import { TxPanelBodyParams } from "../utilities/TxParams";
 import { BlockPanelBodyParams } from "../utilities/BlockParams";
+import HandleSearchKeyDown from "../utilities/handleSearchKeyDown";
 import SearchResultItem from "./SearchResultItem";
 
 const Searchboard = () => {
@@ -11,6 +12,12 @@ const Searchboard = () => {
   const [toAddressResults, setToAddressResults] = useState([]);
   const [blockResults, setBlockResults] = useState([]);
   const [hashResults, setHashResults] = useState([]);
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      HandleSearchKeyDown(value);
+    }
+  };
 
   const onChange = useCallback((event) => {
     const { value: newValue } = event.target;
@@ -23,12 +30,10 @@ const Searchboard = () => {
   };
 
   useEffect(() => {
-    let from_address_content = [];
-    let to_address_content = [];
-    let block_content = [];
-    let hash_content = [];
-
-    // if (!value) return;
+    let from_address_content = [],
+      block_content = [],
+      to_address_content = [],
+      hash_content = [];
 
     from_address_content = TxPanelBodyParams.filter((item) => {
       return item.From.indexOf(value) >= 0 && value;
@@ -52,14 +57,13 @@ const Searchboard = () => {
   }, [value]);
 
   useEffect(() => {
-    let total = 0;
-    total =
-      hashResults.length +
-      blockResults.length +
-      toAddressResults.length +
-      fromAddressResults.length;
-    console.log("Total: ", total);
-    if (total > 0) setCloseState(true);
+    if (
+      hashResults.length ||
+      blockResults.length ||
+      toAddressResults.length ||
+      fromAddressResults.length
+    )
+      setCloseState(true);
     else setCloseState(false);
   }, [fromAddressResults, toAddressResults, hashResults, blockResults]);
 
@@ -78,6 +82,7 @@ const Searchboard = () => {
           <input
             value={value}
             onChange={onChange}
+            onKeyDown={handleKeyDown}
             className="p-[10px] pl-12 w-full font-medium text-[14px] focus:outline-none bg-white dark:bg-transparent border-none text-fontSecondary dark:text-darkFontPrimary"
             placeholder="Search by Address / Transaction Hash / Block / Token"
           ></input>
