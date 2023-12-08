@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+
 import DropDownMenu from "../components/DropDownMenu";
 import MobileDropDown from "../components/MobileDropDown";
 import MobileColorTheme from "../components/MobileColorTheme";
 import MenuItems from "../utils/constants/MenuItems";
 import SettingDropMenu from "../components/SettingDropMenu";
+import { ReactComponent as Logo } from "../assets/logo.svg";
 
 const Navbar = ({ darkModeEnabled, toggleMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +24,7 @@ const Navbar = ({ darkModeEnabled, toggleMode }) => {
         <div className="max-w-[1408px] min-w-[343px] w-full flex flex-row justify-between items-center px-5 mx-auto">
           <div className="max-w-[384px] m-0 cursor-pointer text-white text-[16px] leading-[22px] font-semibold">
             <div className="flex flex-row max-w-full items-center">
-              <img src="./Adrestus.svg" alt="logo" />
+              <Logo />
               <div className="flex-col items-start justify-between pl-[7px] pt-2 ad:hidden flex">
                 <span className="text-[1.2em] leading-[0.5em] m-0 p-0">
                   Adrestus
