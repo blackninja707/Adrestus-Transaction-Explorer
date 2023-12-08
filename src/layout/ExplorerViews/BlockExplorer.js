@@ -14,22 +14,27 @@ import filter_block from "../../utils/filterParams/filter_block";
 
 const BlockExplorer = () => {
   const { id } = useParams();
-
   let content = filter_block(id);
 
   return (
     <>
       <div className="max-w-[1408px] min-w-[343px] w-full flex flex-col px-5 mx-auto pb-6">
         <div className="pb-6">
-          <h1 className="text-[28px] font-semibold max-w-[1200px] leading-normal dark:text-darkFontPrimary text-fontSecondary text-left">
-            Block #{content.Height}
-          </h1>
+          {content.length !== 0 ? (
+            <h1 className="text-[28px] font-semibold max-w-[1200px] leading-normal dark:text-darkFontPrimary text-fontSecondary text-left">
+              Block #{content.Height}
+            </h1>
+          ) : (
+            <h1 className="text-[28px] font-semibold max-w-[1200px] leading-normal dark:text-darkFontPrimary text-fontSecondary text-left">
+              Block Doesn't Exist
+            </h1>
+          )}
         </div>
         <div className=" rounded-lg overflow-x-auto flex flex-col bg-white dark:bg-darkPrimary p-6 border-[1px] dark:border-darkColorSeparator border-colorSeparator">
           <div className="flex flex-col">
             <div className=""></div>
             <div className="flex flex-start overflow-auto" id="Scrollbar">
-              <table className="w-full min-w-[698px] relative border-spacing-0 border-separate h-auto">
+              <table className="w-full min-w-[698px] relative border-spacing-0 border-separate">
                 <thead className="none"></thead>
                 <tbody className="">
                   <HeightItem title="Height" value={content.Height} />

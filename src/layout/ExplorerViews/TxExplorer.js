@@ -34,7 +34,7 @@ const TxExplorer = () => {
                 <tbody className="">
                   <StateItem title="State" value={true} />
                   <HashItem title="Hash" value={content.Hash} />
-                  <BlockNumberItem title="Block Number" value="50648123" />
+                  <BlockNumberItem title="Block Number" value="50591843" />
                   <TimestampItem title="Timestamp" value={content.Timestamp} />
                   <AddressItem title="From" value={content.From} />
                   <AddressItem title="To" value={content.To} />

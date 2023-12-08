@@ -16,8 +16,6 @@ const AddressExplorer = () => {
 
   let content = filter_address(id);
 
-  console.log("======*******++++++++", content);
-
   return (
     <>
       <div className="max-w-[1408px] min-w-[343px] w-full flex flex-col px-5 mx-auto pb-6">

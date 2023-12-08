@@ -20,7 +20,7 @@ const AddressItem = ({ title, value }) => {
                   className="text-primary dark:text-darkViewColor mb-1 cursor-pointer"
                 />
               </CopyToClipboard>
-              <Link to={`/tx/${value}`}>
+              <Link to={`/address/${value}`}>
                 <span className="text-[14px] text-primary dark:text-[#69FABD] leading-[20px]">
                   {value}
                 </span>
