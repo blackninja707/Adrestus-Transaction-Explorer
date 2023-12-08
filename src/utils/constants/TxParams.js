@@ -28,6 +28,13 @@ export const TxPanelBodyParams = [
     To: "0xa60B0fbbB410F3cde86086b674f51C6B8E551993",
     Timestamp: "12/03/2023, 02:31:51",
   },
+  {
+    Hash: "0x982cfa0e635d376eb3debed0b733378aad4a95759c114eebbaeca0bc11c92ae5",
+    TxType: "Adrestus",
+    From: "0x0ecAEE3D5eeed3A312A632F3953D63B7863D1E6B",
+    To: "0xB410F3cda60B0f86086b67bb4f51C6B8E551993e",
+    Timestamp: "12/03/2023, 02:31:51",
+  },
 ];
 
 export const TxBoardParams = [

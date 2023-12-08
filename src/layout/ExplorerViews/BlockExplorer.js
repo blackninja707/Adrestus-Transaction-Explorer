@@ -10,15 +10,19 @@ import BlockGasLimitItem from "../../components/ExplorerView/BlockView/BlockGasL
 import BlockGasUsedItem from "../../components/ExplorerView/BlockView/BlockGasUsedItem";
 import BlockSizeItem from "../../components/ExplorerView/BlockView/BlockSizeItem";
 
+import filter_block from "../../utils/filterParams/filter_block";
+
 const BlockExplorer = () => {
   const { id } = useParams();
+
+  let content = filter_block(id);
 
   return (
     <>
       <div className="max-w-[1408px] min-w-[343px] w-full flex flex-col px-5 mx-auto pb-6">
         <div className="pb-6">
           <h1 className="text-[28px] font-semibold max-w-[1200px] leading-normal dark:text-darkFontPrimary text-fontSecondary text-left">
-            Block #{id}
+            Block #{content.Height}
           </h1>
         </div>
         <div className=" rounded-lg overflow-x-auto flex flex-col bg-white dark:bg-darkPrimary p-6 border-[1px] dark:border-darkColorSeparator border-colorSeparator">
@@ -28,21 +32,12 @@ const BlockExplorer = () => {
               <table className="w-full min-w-[698px] relative border-spacing-0 border-separate h-auto">
                 <thead className="none"></thead>
                 <tbody className="">
-                  <HeightItem title="Height" value={id} />
-                  <BlockHashItem
-                    title="Hash"
-                    value="0x76daaecc2ddef226fc04c52bf98c1629650c7eb979eeff7b6c8ba20908f391a5"
-                  />
-                  <TimestampItem
-                    title="Timestamp"
-                    value="2023-12-06T15:11:26.000Z"
-                  />
+                  <HeightItem title="Height" value={content.Height} />
+                  <BlockHashItem title="Hash" value={content.Hash} />
+                  <TimestampItem title="Timestamp" value={content.Timestamp} />
                   <TxItem title="Transactions" value="-" />
                   <StakingTxItem title="Staking Transactions" value="-" />
-                  <AddressItem
-                    title="Proposer"
-                    value="0x21C3de23d98Caddc406E3d31b25e807aDDF33633"
-                  />
+                  <AddressItem title="Proposer" value={content.Proposer} />
                   <BlockGasLimitItem title="Gas Limit" value="30,00000" />
                   <BlockGasUsedItem title="Gas Used" value="0" />
                   <BlockSizeItem title="Size" value="1,010" />

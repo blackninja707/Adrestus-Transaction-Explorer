@@ -1,4 +1,4 @@
-import SocialLink from "../utilities/SocialLink";
+import SocialLink from "../utils/constants/SocialLink";
 
 const Footer = () => {
   return (

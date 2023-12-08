@@ -9,8 +9,15 @@ import AddressHeader from "../../components/ExplorerView/AddressView/AddressHead
 import AddressBodyContent from "../../components/ExplorerView/AddressView/AddressBodyContent";
 import CSVExport from "../../components/ExplorerView/AddressView/CSVExport";
 
+import filter_address from "../../utils/filterParams/filter_address";
+
 const AddressExplorer = () => {
   const { id } = useParams();
+
+  let content = filter_address(id);
+
+  console.log("======*******++++++++", content);
+
   return (
     <>
       <div className="max-w-[1408px] min-w-[343px] w-full flex flex-col px-5 mx-auto pb-6">
@@ -42,24 +49,18 @@ const AddressExplorer = () => {
                   <table className="w-full min-w-[1266px] table-auto relative border-spacing-0 border-separate h-auto">
                     <AddressHeader />
                     <tbody>
-                      <AddressBodyContent
-                        hash="0xb88065ec71a07a6859bea9339db7cd37843c93dec6a614d5e7511fcb0527ca50"
-                        method="Deposit"
-                        from={id}
-                        state="OUT"
-                        to="0xb88065ec71a07a6859bea9339db7cd37843c93dec6a614d5e7511fcb0527ca50"
-                        value="123"
-                        timestamp="12/07/2023, 04:02:13"
-                      />
-                      <AddressBodyContent
-                        hash="0xb88065ec71a07a6859bea9339db7cd37843c93dec6a614d5e7511fcb0527ca50"
-                        method="Deposit"
-                        from={id}
-                        state="OUT"
-                        to="0xb88065ec71a07a6859bea9339db7cd37843c93dec6a614d5e7511fcb0527ca50"
-                        value="123"
-                        timestamp="12/07/2023, 04:02:13"
-                      />
+                      {content.map((item, index) => (
+                        <AddressBodyContent
+                          key={index}
+                          hash={item.Hash}
+                          method="Deposit"
+                          from={item.From}
+                          state="OUT"
+                          to={item.To}
+                          value="123"
+                          timestamp={item.Timestamp}
+                        />
+                      ))}
                     </tbody>
                   </table>
                 </div>

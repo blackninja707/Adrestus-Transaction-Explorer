@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import DropDownMenu from "../components/DropDownMenu";
 import MobileDropDown from "../components/MobileDropDown";
 import MobileColorTheme from "../components/MobileColorTheme";
-import MenuItems from "../utilities/MenuItems";
+import MenuItems from "../utils/constants/MenuItems";
 import SettingDropMenu from "../components/SettingDropMenu";
 
 const Navbar = ({ darkModeEnabled, toggleMode }) => {

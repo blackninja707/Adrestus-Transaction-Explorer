@@ -11,8 +11,11 @@ import TxFeeItem from "../../components/ExplorerView/TransactionView/TxFeeItem";
 import GasLimitItem from "../../components/ExplorerView/TransactionView/GasLimitItem";
 import GasPriceItem from "../../components/ExplorerView/TransactionView/GasPriceItem";
 
+import filter_tx from "../../utils/filterParams/filter_tx";
+
 const TxExplorer = () => {
   const { id } = useParams();
+  let content = filter_tx(id);
 
   return (
     <>
@@ -30,20 +33,11 @@ const TxExplorer = () => {
                 <thead className="none"></thead>
                 <tbody className="">
                   <StateItem title="State" value={true} />
-                  <HashItem title="Hash" value={id} />
+                  <HashItem title="Hash" value={content.Hash} />
                   <BlockNumberItem title="Block Number" value="50648123" />
-                  <TimestampItem
-                    title="Timestamp"
-                    value="2023-12-06T15:11:26.000Z"
-                  />
-                  <AddressItem
-                    title="From"
-                    value="0x21C3de23d98Caddc406E3d31b25e807aDDF33633"
-                  />
-                  <AddressItem
-                    title="To"
-                    value="0x3d31b25e807aDDF33633ddc4062d98Caddc406E3"
-                  />
+                  <TimestampItem title="Timestamp" value={content.Timestamp} />
+                  <AddressItem title="From" value={content.From} />
+                  <AddressItem title="To" value={content.To} />
                   <ValueItem title="Value" value="0" />
                   <TransferItem title="Token Transfers" value="" />
                   <TxFeeItem title="Transaction Fee" value="0.0197111165" />

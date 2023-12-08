@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import {
   BlockPanelBodyParams,
   BlockPanelHeaderParams,
-} from "../utilities/BlockParams";
+} from "../utils/constants/BlockParams";
 
 const BlockBoard = () => {
   return (

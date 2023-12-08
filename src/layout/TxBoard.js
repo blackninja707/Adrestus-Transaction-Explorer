@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
-import { TxPanelHeaderParams, TxPanelBodyParams } from "../utilities/TxParams";
-import { abbreviateString } from "../utilities/abbreviateString.js";
+import {
+  TxPanelHeaderParams,
+  TxPanelBodyParams,
+} from "../utils/constants/TxParams";
+import { abbreviateString } from "../utils/abbreviateString.js";
 
 const TxBoard = () => {
   return (
