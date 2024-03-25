@@ -3,7 +3,7 @@ export const BlockPanelBodyParams = [
   {
     Hash: "0",
     Size: "2",
-    Height: "50591842",
+    Height: "04b5c12fde4c45c4bc0985b198ed647a11be5b56103df72193adbef6a79bb175",
     Timestamp: "12/05/2023, 02:55:43",
     Proposer: "0x21C3de23d98Caddc406E3d31b25e807aDDF33633",
   },

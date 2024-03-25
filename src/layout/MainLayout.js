@@ -1,8 +1,43 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import SockJsClient from "react-stomp";
+import SockJS from "sockjs-client";
+import Stomp from "stompjs";
+
 import BlockBoard from "./BlockBoard";
 import Dashboard from "./Dashboard";
 import TxBoard from "./TxBoard";
 
 const MainLayout = () => {
+  const [transactions, setTransactions] = useState("");
+  const [blocks, setBlocks] = useState("");
+  const customHeaders = {
+    Authorization:
+      "Bearer " +
+      "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYW5vc0BnbWFpbC5jb20iLCJpc3MiOiJwYW5vc0BnbWFpbC5jb20iLCJpc1VzZXIiOiJST0xFX1VTRVIiLCJpYXQiOjE3MTEyODM5NjgsImV4cCI6MTcxMTM3MDM2OH0.uy5btWB3z1IAK7RLemQtOqqkwx3cm5UJuUjNnAjlVl53hkkJFfcHDKXjE0cgWVFS976ko3Bye1tjRFsVzwzfOQ",
+  };
+  useEffect(() => {
+    var sock = new SockJS(
+      `${process.env.REACT_APP_SERVER}/websocket-explorer?access_token=12345`
+    );
+    let stompClient = Stomp.over(sock);
+    stompClient.connect(
+      {
+        Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYW5vc0BnbWFpbC5jb20iLCJpc3MiOiJwYW5vc0BnbWFpbC5jb20iLCJpc1VzZXIiOiJST0xFX1VTRVIiLCJpYXQiOjE3MTEyODM5NjgsImV4cCI6MTcxMTM3MDM2OH0.uy5btWB3z1IAK7RLemQtOqqkwx3cm5UJuUjNnAjlVl53hkkJFfcHDKXjE0cgWVFS976ko3Bye1tjRFsVzwzfOQ`,
+      },
+      (frame) => {
+        console.log(frame);
+        stompClient.subscribe("/topic/transactions", (message) => {
+          console.log(message.body);
+          setTransactions(message.body);
+        });
+        stompClient.subscribe("/topic/blocks", (message) => {
+          console.log(message.body);
+          setBlocks(message.body);
+        });
+      }
+    );
+  });
   return (
     <>
       <div className="max-w-[1408px] min-w-[343px] w-full flex flex-col justify-between items-center px-5 mx-auto">

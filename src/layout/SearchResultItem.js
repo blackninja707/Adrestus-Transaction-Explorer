@@ -1,6 +1,6 @@
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const SearchResultItem = ({ value }) => {

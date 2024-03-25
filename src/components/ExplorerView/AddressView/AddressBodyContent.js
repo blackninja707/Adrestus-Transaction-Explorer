@@ -33,9 +33,9 @@ const AddressBodyContent = ({
       </th>
       <td className="px-2 py-4 m-0 border-t-[1px] text-start dark:border-darkColorSeparator border-colorSeparator">
         <div className="flex text-start">
-          <span className="w-[100px] block rounded px-1 py-[2px] text-center whitespace-nowrap overflow-hidden text-ellipsis text-[12px] leading-[24px] bg-[#eff8ff] dark:bg-[#3660ad] text-fontSecondary dark:text-darkFontPrimary">
+          <p className="w-[100px] block rounded px-1 py-[2px] text-center whitespace-nowrap overflow-hidden text-ellipsis text-[12px] leading-[24px] bg-[#eff8ff] dark:bg-[#3660ad] text-fontSecondary dark:text-darkFontPrimary">
             {method}
-          </span>
+          </p>
         </div>
       </td>
       <td className="px-2 py-4 text-start m-0 border-t-[1px] dark:border-darkColorSeparator border-colorSeparator">

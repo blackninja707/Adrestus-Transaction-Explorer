@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 const TransactionsExplorer = () => {
-  const Id = useParams();
+  const id = useParams();
+
+  console.log("ID:", id);
 
   return (
     <>

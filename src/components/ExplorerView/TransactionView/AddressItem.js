@@ -21,7 +21,7 @@ const AddressItem = ({ title, value }) => {
                 />
               </CopyToClipboard>
               <Link to={`/address/${value}`}>
-                <span className="text-[14px] text-primary dark:text-[#69FABD] leading-[20px]">
+                <span className="text-[14px] text-primary dark:text-[#69FABD] leading-[20px] text-ellipsis max-w-[700px] w-full whitespace-nowrap overflow-hidden inline-block">
                   {value}
                 </span>
               </Link>

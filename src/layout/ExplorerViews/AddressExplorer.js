@@ -1,5 +1,8 @@
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import { GetTransactionsByFromAddress } from "../../actions/transactionAction";
+import { getTotalAccountBalanceByAddressZone } from "../../actions/accountAction";
 import AddressView from "../../components/ExplorerView/AddressView/AddressView";
 import BalanceView from "../../components/ExplorerView/AddressView/BalanceView";
 import StakedView from "../../components/ExplorerView/AddressView/StakedView";
@@ -14,7 +17,39 @@ import filter_address from "../../utils/filterParams/filter_address";
 const AddressExplorer = () => {
   const { id } = useParams();
 
-  let content = filter_address(id);
+  const [transactions, setTransactions] = useState(null);
+  const [account, setAccount] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [transactionsPerPage] = useState(10);
+  const [pageCount, setPageCount] = useState(0);
+
+  async function fetchData() {
+    setLoading(true); // Begin loading
+    try {
+      const fetchedTransaction = await GetTransactionsByFromAddress(id);
+      const fetchedAccount = await getTotalAccountBalanceByAddressZone(id);
+      setTransactions(fetchedTransaction); // Set the transaction state with the fetched data
+      setAccount(fetchedAccount);
+    } catch (error) {
+      console.error("Error fetching transaction: ", error);
+      setError(error); // Set the error state
+    } finally {
+      setLoading(false); // End loading
+    }
+  }
+
+  useEffect(() => {
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
+
+  const handlePageClick = (data) => {
+    let selectedPage = data.selected;
+    setCurrentPage(selectedPage);
+  };
 
   return (
     <>
@@ -26,10 +61,14 @@ const AddressExplorer = () => {
         </div>
         <div className="rounded-lg overflow-x-auto flex flex-col bg-white dark:bg-darkPrimary p-6 border-[1px] dark:border-darkColorSeparator border-colorSeparator">
           <div className="flex flex-col">
-            <AddressView value={id} />
-            <BalanceView value="4885.308" />
-            <StakedView value="0" />
-            <TokenView value="ADR" />
+            {account && account[0] && (
+              <>
+                <AddressView value={id} />
+                <BalanceView value={account[0].balance} />
+                <StakedView value={account[0].staked} />
+                <TokenView value="ADR" />
+              </>
+            )}
           </div>
         </div>
         <div className="pt-4">
@@ -39,32 +78,65 @@ const AddressExplorer = () => {
               <div className=""></div>
               {/* MainBoard */}
               <div className="p-[10px] flex flex-col">
-                <Pagination current={1} total={1} />
+                <Pagination
+                  currentPage={currentPage}
+                  totalCount={transactions && transactions.length}
+                  setCurrentPage={setCurrentPage}
+                  transactionsPerPage={transactionsPerPage}
+                />
+                {/* <ReactPaginate
+                  previousLabel={"Previous"}
+                  nextLabel={"Next"}
+                  breakLabel={"..."}
+                  pageCount={pageCount}
+                  initialPage={currentPage}
+                  onPageChange={handlePageClick}
+                  containerClassName={"pagination"} // Add a custom class for styling
+                  activeClassName={"active"} // Add a custom class for the active page
+                  disabledClassName={"disabled"} // Add a custom class for disabled buttons
+                  breakClassName={"break-me"} // Add a custom class for the ellipsis
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  subContainerClassName={"pages pagination"}
+                  breakLinkClassName={"page-link"}
+                  previousClassName={"page-item"}
+                  nextClassName={"page-item"}
+                  pageClassName={"page-item"}
+                  pageLinkClassName={"page-link"}
+                  previousLinkClassName={"page-link"}
+                  nextLinkClassName={"page-link"}
+                  forcePage={currentPage} // Ensure the correct page is highlighted
+                /> */}
                 <div
                   className="overflow-auto transition-all duration-100 min-h-[600px] flex flex-col"
                   id="Scrollbar"
                 >
-                  <table className="w-full min-w-[1266px] table-auto relative border-spacing-0 border-separate h-auto">
+                  <table className="w-full min-w-[1266px] table-auto relative border-spacing-0 border-separate h-full max-h-[1266px] overflow-y-hidden">
                     <AddressHeader />
-                    <tbody>
-                      {content.map((item, index) => (
-                        <AddressBodyContent
-                          key={index}
-                          hash={item.Hash}
-                          method="Deposit"
-                          from={item.From}
-                          state="OUT"
-                          to={item.To}
-                          value="123"
-                          timestamp={item.Timestamp}
-                        />
-                      ))}
+                    <tbody className="max-h-[1266px] overflow-y-hidden">
+                      {transactions &&
+                        transactions
+                          .slice(
+                            currentPage * transactionsPerPage,
+                            (currentPage + 1) * transactionsPerPage
+                          )
+                          .map((item, index) => (
+                            <AddressBodyContent
+                              key={index}
+                              hash={item.transaction_hash}
+                              method={item.statusType}
+                              from={item.fromAddress}
+                              state="OUT"
+                              to={item.toAddress}
+                              value={item.amount}
+                              timestamp={item.creationDate}
+                            />
+                          ))}
                     </tbody>
                   </table>
                 </div>
                 <div className="pt-6 flex flex-row justify-between items-center">
                   <div></div>
-                  <Pagination current={1} total={1} />
                 </div>
                 <CSVExport id={id} />
               </div>

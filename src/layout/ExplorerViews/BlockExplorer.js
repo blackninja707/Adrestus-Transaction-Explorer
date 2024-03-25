@@ -1,4 +1,7 @@
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import { getBlockByHash } from "../../actions/blockAction";
 
 import TimestampItem from "../../components/ExplorerView/TransactionView/TimestampItem";
 import TxItem from "../../components/ExplorerView/TransactionView/TxItem";
@@ -11,10 +14,35 @@ import BlockGasUsedItem from "../../components/ExplorerView/BlockView/BlockGasUs
 import BlockSizeItem from "../../components/ExplorerView/BlockView/BlockSizeItem";
 
 import filter_block from "../../utils/filterParams/filter_block";
+import { abbreviateString } from "../../utils/abbreviateString";
+import { timestampConverter } from "../../utils/timestampConverter";
 
 const BlockExplorer = () => {
   const { id } = useParams();
+  const [blocks, setBlocks] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   let content = filter_block(id);
+
+  async function fetchData() {
+    setLoading(true); // Begin loading
+    try {
+      const fetchedBlocks = await getBlockByHash(id);
+      setBlocks(fetchedBlocks); // Set the transaction state with the fetched data
+    } catch (error) {
+      console.error("Error fetching transaction: ", error);
+      setError(error); // Set the error state
+    } finally {
+      setLoading(false); // End loading
+    }
+  }
+
+  useEffect(() => {
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
 
   return (
     <>
@@ -22,7 +50,7 @@ const BlockExplorer = () => {
         <div className="pb-6">
           {content.length !== 0 ? (
             <h1 className="text-[28px] font-semibold max-w-[1200px] leading-normal dark:text-darkFontPrimary text-fontSecondary text-left">
-              Block #{content.Height}
+              Block # {abbreviateString(id)}
             </h1>
           ) : (
             <h1 className="text-[28px] font-semibold max-w-[1200px] leading-normal dark:text-darkFontPrimary text-fontSecondary text-left">
@@ -30,24 +58,34 @@ const BlockExplorer = () => {
             </h1>
           )}
         </div>
-        <div className=" rounded-lg overflow-x-auto flex flex-col bg-white dark:bg-darkPrimary p-6 border-[1px] dark:border-darkColorSeparator border-colorSeparator">
+        <div className="rounded-lg overflow-x-auto flex flex-col bg-white dark:bg-darkPrimary p-6 border-[1px] dark:border-darkColorSeparator border-colorSeparator">
           <div className="flex flex-col">
             <div className=""></div>
             <div className="flex flex-start overflow-auto" id="Scrollbar">
               <table className="w-full min-w-[698px] relative border-spacing-0 border-separate">
                 <thead className="none"></thead>
                 <tbody className="">
-                  <HeightItem title="Height" value={content.Height} />
-                  <BlockHashItem title="Hash" value={content.Hash} />
-                  <TimestampItem title="Timestamp" value={content.Timestamp} />
-                  <TxItem title="Transactions" value="-" />
-                  <StakingTxItem title="Staking Transactions" value="-" />
-                  <AddressItem title="Proposer" value={content.Proposer} />
-                  <BlockGasLimitItem title="Gas Limit" value="30,00000" />
-                  <BlockGasUsedItem title="Gas Used" value="0" />
-                  <BlockSizeItem title="Size" value="1,010" />
-                  <TxItem title="Extra Data" value="-" />
-                  <TxItem title="Logs Bloom" value="-" />
+                  {blocks && (
+                    <>
+                      <BlockHashItem title="Hash" value={blocks.blockhash} />
+                      <HeightItem title="Height" value={blocks.height} />
+                      <TimestampItem
+                        title="Timestamp"
+                        value={timestampConverter(blocks.timestamp)}
+                      />
+                      <TxItem title="Transactions" value="-" />
+                      <StakingTxItem title="Staking Transactions" value="-" />
+                      <AddressItem
+                        title="Proposer"
+                        value={blocks.transactionProposer}
+                      />
+                      <BlockGasLimitItem title="Gas Limit" value="30,00000" />
+                      <BlockGasUsedItem title="Gas Used" value="0" />
+                      <BlockSizeItem title="Size" value={blocks.size} />
+                      <TxItem title="Extra Data" value="-" />
+                      <TxItem title="Logs Bloom" value="-" />
+                    </>
+                  )}
                 </tbody>
               </table>
             </div>

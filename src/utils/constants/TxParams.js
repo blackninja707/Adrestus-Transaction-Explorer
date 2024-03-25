@@ -8,7 +8,7 @@ export const TxPanelHeaderParams = [
 
 export const TxPanelBodyParams = [
   {
-    Hash: "0x5d376eb3debed0b733378ebbaeca0bc11c99c114e2ae5982cfaad4a9575a0e63",
+    Hash: "0135d06420164487b6fc5b922999fa5fdb5a5da5dee60268f9c3be06fd319589",
     TxType: "Adrestus",
     From: "0x0ecAEE3D5eeed3A312A632F3953D63B7863D1E6B",
     To: "0xa60B0fbbB410F3cd4f51C6B8E551993e86086b67",

@@ -3,6 +3,7 @@ import {
   BlockPanelBodyParams,
   BlockPanelHeaderParams,
 } from "../utils/constants/BlockParams";
+import { abbreviateString } from "../utils/abbreviateString";
 
 const BlockBoard = () => {
   return (
@@ -41,13 +42,13 @@ const BlockBoard = () => {
                   >
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <div className="max-w-[125px] text-fontPrimary dark:text-darkIconColor">
-                        {item.Hash}
+                        {abbreviateString(item.Hash)}
                       </div>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <Link to={`/block/${item.Height}`}>
                         <div className="max-w-[125px] text-primary dark:text-darkIconColor">
-                          {item.Height}
+                          {abbreviateString(item.Height)}
                         </div>
                       </Link>
                     </td>

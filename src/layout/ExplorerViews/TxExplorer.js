@@ -1,4 +1,7 @@
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
+import { getTransactionByHash } from "../../actions/transactionAction";
 
 import HashItem from "../../components/ExplorerView/TransactionView/HashItem";
 import BlockNumberItem from "../../components/ExplorerView/TransactionView/BlockNumberItem";
@@ -6,16 +9,34 @@ import TimestampItem from "../../components/ExplorerView/TransactionView/Timesta
 import StateItem from "../../components/ExplorerView/TransactionView/StateItem";
 import AddressItem from "../../components/ExplorerView/TransactionView/AddressItem";
 import ValueItem from "../../components/ExplorerView/TransactionView/ValueItem";
-import TransferItem from "../../components/ExplorerView/TransactionView/TransferItem";
 import TxFeeItem from "../../components/ExplorerView/TransactionView/TxFeeItem";
-import GasLimitItem from "../../components/ExplorerView/TransactionView/GasLimitItem";
-import GasPriceItem from "../../components/ExplorerView/TransactionView/GasPriceItem";
-
-import filter_tx from "../../utils/filterParams/filter_tx";
 
 const TxExplorer = () => {
+  const [transaction, setTransaction] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { id } = useParams();
-  let content = filter_tx(id);
+
+  console.log("transaction id:", id);
+
+  async function fetchData() {
+    setLoading(true); // Begin loading
+    try {
+      const fetchedTransaction = await getTransactionByHash(id);
+      setTransaction(fetchedTransaction); // Set the transaction state with the fetched data
+    } catch (error) {
+      console.error("Error fetching transaction: ", error);
+      setError(error); // Set the error state
+    } finally {
+      setLoading(false); // End loading
+    }
+  }
+
+  useEffect(() => {
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
 
   return (
     <>
@@ -25,27 +46,38 @@ const TxExplorer = () => {
             Transaction
           </h1>
         </div>
-        <div className=" rounded-lg overflow-x-auto flex flex-col bg-white dark:bg-darkPrimary p-6 border-[1px] dark:border-darkColorSeparator border-colorSeparator">
+
+        <div className="rounded-lg overflow-x-auto flex flex-col bg-white dark:bg-darkPrimary p-6 border-[1px] dark:border-darkColorSeparator border-colorSeparator">
           <div className="flex flex-col">
             <div className=""></div>
             <div className="flex flex-start overflow-auto" id="Scrollbar">
               <table className="w-full min-w-[698px] relative border-spacing-0 border-separate h-auto">
                 <thead className="none"></thead>
                 <tbody className="">
-                  <StateItem title="State" value={true} />
-                  <HashItem title="Hash" value={content.Hash} />
-                  <BlockNumberItem title="Block Number" value="50591843" />
-                  <TimestampItem title="Timestamp" value={content.Timestamp} />
-                  <AddressItem title="From" value={content.From} />
-                  <AddressItem title="To" value={content.To} />
-                  <ValueItem title="Value" value="0" />
-                  <TransferItem title="Token Transfers" value="" />
-                  <TxFeeItem title="Transaction Fee" value="0.0197111165" />
-                  <GasLimitItem
-                    title="Gas Limit & Usage by Txn"
-                    value="1,105,244 | 164,288 (14.86%)"
-                  />
-                  <GasPriceItem title="Gas Price" value="0.00000012" />
+                  {transaction && (
+                    <>
+                      <StateItem title="Status" value={transaction.status} />
+                      <HashItem
+                        title="Hash"
+                        value={transaction.transactionhash}
+                      />
+                      <BlockNumberItem
+                        title="Block Hash"
+                        value={transaction.blockModel.blockhash}
+                      />
+                      <TimestampItem
+                        title="Timestamp"
+                        value={transaction.timestamp}
+                      />
+                      <AddressItem title="From" value={transaction.from} />
+                      <AddressItem title="To" value={transaction.to} />
+                      <ValueItem title="Value" value={transaction.amount} />
+                      <TxFeeItem
+                        title="Transaction Fee"
+                        value={transaction.amountWithTransactionFee}
+                      />
+                    </>
+                  )}
                 </tbody>
               </table>
             </div>
