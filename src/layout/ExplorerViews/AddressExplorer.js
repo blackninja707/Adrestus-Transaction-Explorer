@@ -23,7 +23,6 @@ const AddressExplorer = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [transactionsPerPage] = useState(10);
-  const [pageCount, setPageCount] = useState(0);
 
   async function fetchData() {
     setLoading(true); // Begin loading
@@ -84,29 +83,6 @@ const AddressExplorer = () => {
                   setCurrentPage={setCurrentPage}
                   transactionsPerPage={transactionsPerPage}
                 />
-                {/* <ReactPaginate
-                  previousLabel={"Previous"}
-                  nextLabel={"Next"}
-                  breakLabel={"..."}
-                  pageCount={pageCount}
-                  initialPage={currentPage}
-                  onPageChange={handlePageClick}
-                  containerClassName={"pagination"} // Add a custom class for styling
-                  activeClassName={"active"} // Add a custom class for the active page
-                  disabledClassName={"disabled"} // Add a custom class for disabled buttons
-                  breakClassName={"break-me"} // Add a custom class for the ellipsis
-                  marginPagesDisplayed={2}
-                  pageRangeDisplayed={5}
-                  subContainerClassName={"pages pagination"}
-                  breakLinkClassName={"page-link"}
-                  previousClassName={"page-item"}
-                  nextClassName={"page-item"}
-                  pageClassName={"page-item"}
-                  pageLinkClassName={"page-link"}
-                  previousLinkClassName={"page-link"}
-                  nextLinkClassName={"page-link"}
-                  forcePage={currentPage} // Ensure the correct page is highlighted
-                /> */}
                 <div
                   className="overflow-auto transition-all duration-100 min-h-[600px] flex flex-col"
                   id="Scrollbar"
