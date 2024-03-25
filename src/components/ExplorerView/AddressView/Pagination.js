@@ -8,13 +8,13 @@ const Pagination = ({
   setCurrentPage,
 }) => {
   const movePrev = () => {
-    if (currentPage <= 0) setCurrentPage(pageCount - 1);
     setCurrentPage(currentPage - 1);
+    if (currentPage <= 0) setCurrentPage(pageCount);
   };
 
   const moveNext = () => {
-    if (currentPage >= pageCount) setCurrentPage(0);
     setCurrentPage(currentPage + 1);
+    if (currentPage >= pageCount) setCurrentPage(0);
   };
 
   const moveNavigate = (page) => {
@@ -26,11 +26,11 @@ const Pagination = ({
   };
 
   const moveLast = () => {
-    setCurrentPage(pageCount - 1);
+    setCurrentPage(pageCount);
   };
 
   const pageCount = useMemo(() => {
-    return Math.ceil(totalCount / transactionsPerPage);
+    return Math.floor(totalCount / transactionsPerPage);
   }, [totalCount, currentPage]);
 
   return (
