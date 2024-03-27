@@ -1,11 +1,8 @@
 import { Link } from "react-router-dom";
-import {
-  TxPanelHeaderParams,
-  TxPanelBodyParams,
-} from "../utils/constants/TxParams";
+import { TxPanelHeaderParams } from "../utils/constants/TxParams";
 import { abbreviateString } from "../utils/abbreviateString.js";
 
-const TxBoard = ({transactions}) => {
+const TxBoard = ({ transactions }) => {
   return (
     <div className="flex flex-col p-0 bg-white dark:bg-darkPrimary border-[1px] border-colorSeparator dark:border-darkColorSeparator rounded-lg max-w-full w-[49%]">
       <div className="p-4 h-[62px] border-b-[1px] border-colorSeparator dark:border-darkColorSeparator flex flex-row justify-between items-center">
@@ -34,41 +31,41 @@ const TxBoard = ({transactions}) => {
               </tr>
             </thead>
             <tbody>
-              {TxPanelBodyParams.map((item, index) => {
+              {transactions.map((item, index) => {
                 return (
                   <tr
                     className="[&>*:last-child]:text-right text-[14px]"
                     key={index}
                   >
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <Link to={`/tx/${item.Hash}`}>
+                      <Link to={`/tx/${item?.transactionhash}`}>
                         <div className="max-w-[125px]  text-primary dark:text-darkIconColor">
-                          {abbreviateString(item.Hash)}
+                          {abbreviateString(item?.transactionhash)}
                         </div>
                       </Link>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <div className="max-w-[125px] text-fontPrimary">
-                        {item.TxType}
+                        {item?.type}
                       </div>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <Link to={`/address/${item.From}`}>
+                      <Link to={`/address/${item?.from}`}>
                         <div className="max-w-[125px] text-primary dark:text-darkIconColor">
-                          {abbreviateString(item.From)}
+                          {abbreviateString(item?.from)}
                         </div>
                       </Link>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <Link to={`/address/${item.To}`}>
+                      <Link to={`/address/${item?.to}`}>
                         <div className="max-w-[125px] text-primary dark:text-darkIconColor">
-                          {abbreviateString(item.To)}
+                          {abbreviateString(item?.to)}
                         </div>
                       </Link>
                     </td>
                     <td className="text-left py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <span className="max-w-[125px] text-fontPrimary">
-                        {item.Timestamp}
+                        {item?.timestamp}
                       </span>
                     </td>
                   </tr>
