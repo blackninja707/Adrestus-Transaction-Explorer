@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import {
-  BlockPanelBodyParams,
   BlockPanelHeaderParams,
 } from "../utils/constants/BlockParams";
 import { abbreviateString } from "../utils/abbreviateString";
 
-const BlockBoard = () => {
+const BlockBoard = ({blocks}) => {
   return (
     <div className="flex flex-col p-0 bg-white border-[1px] dark:bg-darkPrimary border-colorSeparator dark:border-darkColorSeparator rounded-lg max-w-full w-[49%]">
       <div className="p-4 h-[62px] border-b-[1px] border-colorSeparator dark:border-darkColorSeparator flex flex-row justify-between items-center">
@@ -34,7 +33,7 @@ const BlockBoard = () => {
               </tr>
             </thead>
             <tbody>
-              {BlockPanelBodyParams.map((item, index) => {
+              {blocks.map((item, index) => {
                 return (
                   <tr
                     className="[&>*:last-child]:text-right text-[14px]"
@@ -42,30 +41,30 @@ const BlockBoard = () => {
                   >
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <div className="max-w-[125px] text-fontPrimary dark:text-darkIconColor">
-                        {abbreviateString(item.Hash)}
+                        {abbreviateString(item?.blockhash || '')}
                       </div>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <Link to={`/block/${item.Height}`}>
+                      <Link to={`/block/${item.height}`}>
                         <div className="max-w-[125px] text-primary dark:text-darkIconColor">
-                          {abbreviateString(item.Height)}
+                          {abbreviateString(String(item?.height || ''))}
                         </div>
                       </Link>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <div className="max-w-[125px] text-fontPrimary">
-                        {item.Size}
+                        {item?.size || ''}
                       </div>
                     </td>
 
                     <td className="text-left py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <span className="max-w-[125px] text-fontPrimary">
-                        {item.Timestamp}
+                        {item?.timestamp || ''}
                       </span>
                     </td>
                   </tr>
-                );
-              })}
+                 );
+              })} 
             </tbody>
           </table>
         </div>

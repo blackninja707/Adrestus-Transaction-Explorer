@@ -5,7 +5,7 @@ import {
 } from "../utils/constants/TxParams";
 import { abbreviateString } from "../utils/abbreviateString.js";
 
-const TxBoard = () => {
+const TxBoard = ({transactions}) => {
   return (
     <div className="flex flex-col p-0 bg-white dark:bg-darkPrimary border-[1px] border-colorSeparator dark:border-darkColorSeparator rounded-lg max-w-full w-[49%]">
       <div className="p-4 h-[62px] border-b-[1px] border-colorSeparator dark:border-darkColorSeparator flex flex-row justify-between items-center">
