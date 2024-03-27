@@ -1,6 +1,5 @@
-![vmplayer_p4anUmXb8q](https://github.com/Adrestus-net/Adrestus-Transaction-Explorer/assets/143029467/9296594d-3acc-4e99-b86e-6cb113bf6d60)# Adrestus-Transaction-Explorer
 
-Adrestus Transaction Explorer
+#Adrestus Transaction Explorer
 
 React, Recoil, Tailwind CSS
 
