@@ -38,7 +38,7 @@ const MainLayout = () => {
 
   useEffect(() => {
     let sock = new SockJS(
-      `http://192.168.179.130:8080/websocket-explorer?access_token=12345`
+      `${process.env.REACT_APP_SERVER}/websocket-explorer?access_token=12345`
     );
     let stompClient = Stomp.over(sock);
     stompClient.connect(

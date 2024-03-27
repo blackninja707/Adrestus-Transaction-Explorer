@@ -3,7 +3,7 @@ import axios from "axios";
 export const getTotalAccountBalanceByAddressZone = async (addressZone) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER}/TotalAccountBalanceByAddressZone/${addressZone}`
+      `${process.env.REACT_APP_SERVER}/api/v1/explorer/TotalAccountBalanceByAddressZone/${addressZone}`
     );
     console.log("response total account balance", response.data);
     return response.data;
@@ -15,7 +15,7 @@ export const getTotalAccountBalanceByAddressZone = async (addressZone) => {
 export const GetAccountByAddress = async (address) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER}/account/${address}`
+      `${process.env.REACT_APP_SERVER}/api/v1/explorer/account/${address}`
     );
     console.log("response account by address", response.data);
     return response.data;
