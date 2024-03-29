@@ -38,11 +38,21 @@ const BlockBoard = ({ blocks }) => {
                     key={index}
                   >
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
+                      <div className="max-w-[125px] text-primary dark:text-darkIconColor">
+                        {item?.zone}
+                      </div>
+                    </td>
+                    <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <Link to={`/block/${item?.blockhash}`}>
                         <div className="max-w-[125px] text-fontPrimary dark:text-darkIconColor">
                           {abbreviateString(item?.blockhash || "")}
                         </div>
                       </Link>
+                    </td>
+                    <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
+                      <div className="max-w-[125px] text-primary dark:text-darkIconColor">
+                        {abbreviateString(String(item?.height || ""))}
+                      </div>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <div className="max-w-[125px] text-primary dark:text-darkIconColor">

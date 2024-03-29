@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
+
 import { TxPanelHeaderParams } from "../utils/constants/TxParams";
 import { abbreviateString } from "../utils/abbreviateString.js";
 
@@ -38,16 +40,17 @@ const TxBoard = ({ transactions }) => {
                     key={index}
                   >
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
+                      <div className="max-w-[125px] text-fontPrimary flex flex-row gap-1 items-center">
+                        {item?.zoneFrom}<span><Icon icon="tdesign:arrow-right" className="text-[#69FABD]" />
+                     </span>{item?.zoneTo}
+                      </div>
+                    </td>
+                    <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <Link to={`/tx/${item?.transactionhash}`}>
                         <div className="max-w-[125px]  text-primary dark:text-darkIconColor">
                           {abbreviateString(item?.transactionhash)}
                         </div>
                       </Link>
-                    </td>
-                    <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <div className="max-w-[125px] text-fontPrimary">
-                        {item?.type}
-                      </div>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <Link to={`/address/${item?.from}`}>

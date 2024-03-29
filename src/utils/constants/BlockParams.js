@@ -1,4 +1,4 @@
-export const BlockPanelHeaderParams = ["Hash", "Height", "Size", "Timestamp"];
+export const BlockPanelHeaderParams = ["Shard","Hash", "Height", "Transactions", "Size", "Timestamp"];
 export const BlockPanelBodyParams = [
   {
     Hash: "0",
