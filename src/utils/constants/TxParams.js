@@ -1,6 +1,7 @@
 export const TxPanelHeaderParams = [
   "Shard",
   "Hash",
+  "Height",
   "From",
   "To",
   "Timestamp",

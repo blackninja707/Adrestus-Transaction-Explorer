@@ -43,9 +43,9 @@ const BlockBoard = ({ blocks }) => {
                       </div>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <Link to={`/block/${item?.blockhash}`}>
+                      <Link to={`/block/${item?.hash}`}>
                         <div className="max-w-[125px] text-fontPrimary dark:text-darkIconColor">
-                          {abbreviateString(item?.blockhash || "")}
+                          {abbreviateString(item?.hash || "")}
                         </div>
                       </Link>
                     </td>
@@ -56,17 +56,11 @@ const BlockBoard = ({ blocks }) => {
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <div className="max-w-[125px] text-primary dark:text-darkIconColor">
-                        {abbreviateString(String(item?.height || ""))}
+                        {abbreviateString(String(item?.transactions || ""))}
                       </div>
                     </td>
-                    <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <div className="max-w-[125px] text-fontPrimary">
-                        {item?.size || ""}
-                      </div>
-                    </td>
-
-                    <td className="text-left py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <span className="max-w-[125px] text-fontPrimary">
+                    <td className="text-right py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
+                      <span className=" text-fontPrimary">
                         {item?.timestamp || ""}
                       </span>
                     </td>

@@ -33,7 +33,7 @@ const TxBoard = ({ transactions }) => {
               </tr>
             </thead>
             <tbody>
-              {transactions.map((item, index) => {
+              {transactions.length > 0 && transactions.map((item, index) => {
                 return (
                   <tr
                     className="[&>*:last-child]:text-right text-[14px]"
@@ -46,29 +46,36 @@ const TxBoard = ({ transactions }) => {
                       </div>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <Link to={`/tx/${item?.transactionhash}`}>
+                      <Link to={`/tx/${item?.transaction_hash}`}>
                         <div className="max-w-[125px]  text-primary dark:text-darkIconColor">
-                          {abbreviateString(item?.transactionhash)}
+                          {abbreviateString(item?.transaction_hash)}
+                        </div>
+                      </Link>
+                    </td>
+                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
+                      <Link to={`/tx/${item?.amount}`}>
+                        <div className="max-w-[125px]  text-primary dark:text-darkIconColor">
+                          {item?.amount}
                         </div>
                       </Link>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <Link to={`/address/${item?.from}`}>
                         <div className="max-w-[125px] text-primary dark:text-darkIconColor">
-                          {abbreviateString(item?.from)}
+                          {abbreviateString(item?.fromAddress)}
                         </div>
                       </Link>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <Link to={`/address/${item?.to}`}>
+                      <Link to={`/address/${item?.toAddress}`}>
                         <div className="max-w-[125px] text-primary dark:text-darkIconColor">
-                          {abbreviateString(item?.to)}
+                          {abbreviateString(item?.toAddress)}
                         </div>
                       </Link>
                     </td>
                     <td className="text-left py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <span className="max-w-[125px] text-fontPrimary">
-                        {item?.timestamp}
+                        {item?.creationDate}
                       </span>
                     </td>
                   </tr>
