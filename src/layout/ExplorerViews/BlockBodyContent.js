@@ -26,7 +26,7 @@ const BlockBodyContent = ({
               className="text-primary dark:text-[#69FABD] mb-1 cursor-pointer"
             />
           </CopyToClipboard>
-          <Link to={`/tx/${item?.hash}`}>
+          <Link to={`/block/${item?.hash}`}>
             <span className="text-[14px] text-primary dark:text-[#69FABD] leading-[20px] w-[170px] text-ellipsis overflow-hidden whitespace-nowrap block">
               {item?.hash}
             </span>

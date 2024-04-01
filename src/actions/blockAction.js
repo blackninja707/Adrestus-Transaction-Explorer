@@ -23,3 +23,15 @@ export const findAllBlocksBetweenRange = async (currentPage, blockPerPage) => {
     throw error;
   }
 };
+
+export const getTxNumberPerBlock = async (block) => {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER}/api/v1/explorer/transactionNumberPerBlock/${block}`
+    );
+    console.log("response blocks between Range", response.data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

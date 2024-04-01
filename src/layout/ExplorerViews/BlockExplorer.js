@@ -17,18 +17,22 @@ import filter_block from "../../utils/filterParams/filter_block";
 import { abbreviateString } from "../../utils/abbreviateString";
 import { timestampConverter } from "../../utils/timestampConverter";
 import CustomItem from "../../components/ExplorerView/TransactionView/CustomItem";
+import { getTxNumberPerBlock } from "../../actions/blockAction";
 
 const BlockExplorer = () => {
   const { id } = useParams();
   const [blocks, setBlocks] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [txCount, setTxCount] = useState(null);
 
   async function fetchData() {
     setLoading(true); // Begin loading
     try {
       const fetchedBlocks = await getBlockByHash(id);
+      const TxNumber = await getTxNumberPerBlock(id);
       setBlocks(fetchedBlocks); // Set the transaction state with the fetched data
+      setTxCount(TxNumber);
     } catch (error) {
       console.error("Error fetching transaction: ", error);
       setError(error); // Set the error state
@@ -60,7 +64,7 @@ const BlockExplorer = () => {
               <table className="w-full min-w-[698px] relative border-spacing-0 border-separate">
                 <thead className="none"></thead>
                 <tbody className="">
-                  {blocks && (
+                  {blocks && txCount && (
                     <>
                       <BlockHashItem title="Hash" value={blocks.blockhash} />
                       <CustomItem title="version" value={blocks?.version} />
@@ -71,6 +75,7 @@ const BlockExplorer = () => {
                       />
                       <CustomItem title="Size" value={blocks?.size} />
                       <HeightItem title="Height" value={blocks?.height} />
+                      <CustomItem title="transactions" value={txCount.trxcounter} />
                       <CustomItem title="Generation" value={blocks?.generation} />
                       <CustomItem title="ViewID" value={blocks?.viewID} />
                       <CustomItem title="Zone" value={blocks?.zone} />
