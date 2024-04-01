@@ -44,7 +44,7 @@ const MainLayout = () => {
     let stompClient = Stomp.over(sock);
     stompClient.connect(
       {
-        Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYW5vc0BnbWFpbC5jb20iLCJpc3MiOiJwYW5vc0BnbWFpbC5jb20iLCJpc1VzZXIiOiJST0xFX1VTRVIiLCJpYXQiOjE3MTE5NzY5MTQsImV4cCI6MTcxMjA2MzMxNH0.0qokYIfLd5vptiNuUqUldvzOMcOfaKJAjtdPC03AHakoUb8lTsv8xmiPLlrrVD25ERHgjZ8oAwTiFvLnGBLVBw`,
+        Authorization: `Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYW5vc0BnbWFpbC5jb20iLCJpc3MiOiJwYW5vc0BnbWFpbC5jb20iLCJpc1VzZXIiOiJST0xFX1VTRVIiLCJpYXQiOjE3MTE5NzgyMjAsImV4cCI6MTcxMjA2NDYyMH0.UDyrRnDLYuDiCiUEdrht5sOpVbLCMGepQB4TpnZYadw_Jo9xsaJFCOVkPJEnNlYK6wA5P-4WAfeQIOkXWIuPIw`,
       },
       (frame) => {
         stompClient.subscribe("/topic/transactions", (message) => {
