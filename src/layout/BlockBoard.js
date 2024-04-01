@@ -70,13 +70,9 @@ const BlockBoard = ({ blocks }) => {
             </tbody>
           </table>
         </div>
-        <div className="w-full pt-6">
-          {/* <Link to="/blocks/"> */}
-          <button className="w-full border-[1px] border-colorSeparator dark:border-darkColorSeparator text-primary dark:text-darkIconColor text-[12px] font-bold rounded-[4px] py-2 px-[5px] bg-transparent transition-all duration-300 delay-0 hover:tracking-[0.3px]">
+          <Link to="/blocks/" className="mt-6 w-full border-[1px] border-colorSeparator dark:border-darkColorSeparator text-primary dark:text-darkIconColor text-[12px] font-bold rounded-[4px] py-2 px-[5px] bg-transparent transition-all duration-300 delay-0 hover:tracking-[0.3px]">
             VIEW ALL BLOCKS
-          </button>
-          {/* </Link> */}
-        </div>
+          </Link>
       </div>
     </div>
   );

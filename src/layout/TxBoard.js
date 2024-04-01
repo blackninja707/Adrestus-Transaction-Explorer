@@ -60,7 +60,7 @@ const TxBoard = ({ transactions }) => {
                       </Link>
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <Link to={`/address/${item?.from}`}>
+                      <Link to={`/address/${item?.fromAddress}`}>
                         <div className="max-w-[125px] text-primary dark:text-darkIconColor">
                           {abbreviateString(item?.fromAddress)}
                         </div>
@@ -84,13 +84,9 @@ const TxBoard = ({ transactions }) => {
             </tbody>
           </table>
         </div>
-        <div className="w-full pt-6">
-          {/* <Link to="/transactions/"> */}
-          <button className="w-full border-[1px] border-colorSeparator dark:border-darkColorSeparator text-primary dark:text-darkIconColor text-[12px] font-bold rounded-[4px] py-2 px-[5px] bg-transparent transition-all duration-300 delay-0 hover:tracking-[0.3px]">
+          <Link to="/transactions/" className="w-full mt-6 border-[1px] border-colorSeparator dark:border-darkColorSeparator text-primary dark:text-darkIconColor text-[12px] font-bold rounded-[4px] py-2 px-[5px] bg-transparent transition-all duration-300 delay-0 hover:tracking-[0.3px]">
             VIEW ALL TRANSACTIONS
-          </button>
-          {/* </Link> */}
-        </div>
+          </Link>
       </div>
     </div>
   );

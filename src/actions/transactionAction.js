@@ -35,3 +35,15 @@ export const GetTransactionsByBlockHash = async (blockHash) => {
     throw error;
   }
 };
+
+export const findAllTransactionsBetweenRange = async (firstNum, txPerPage) => {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER}/api/v1/explorer/findAllTransactionsBetweenRange/${firstNum * txPerPage}/${(firstNum+1) * txPerPage}`
+    );
+    console.log("response transactions between Range", response.data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
