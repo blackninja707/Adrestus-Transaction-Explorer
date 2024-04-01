@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Icon } from "@iconify/react";
 
 import { findAllTransactionsBetweenRange } from "../../actions/transactionAction";
 import PaginationTemp from "../../components/PaginationTemp";
 import CSVExport from "../../components/ExplorerView/AddressView/CSVExport";
-import BlocksExplorer from "./BlocksExplorer";
 import TransactionBodyContent from './TransactionBodyContent';
 
 const TransactionsExplorer = () => {

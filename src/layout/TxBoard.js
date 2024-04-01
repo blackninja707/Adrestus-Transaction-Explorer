@@ -53,11 +53,11 @@ const TxBoard = ({ transactions }) => {
                       </Link>
                     </td>
                      <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
-                      <Link to={`/tx/${item?.amount}`}>
+                 
                         <div className="max-w-[125px]  text-primary dark:text-darkIconColor">
                           {item?.amount}
                         </div>
-                      </Link>
+                    
                     </td>
                     <td className="text-start py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <Link to={`/address/${item?.fromAddress}`}>

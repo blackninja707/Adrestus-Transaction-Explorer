@@ -40,7 +40,7 @@ const TxExplorer = () => {
 
   return (
     <>
-      <div className="max-w-[1408px] min-w-[343px] w-full flex flex-col px-5 mx-auto pb-6">
+      <div className="max-w-[1408px] min-w-[343px] w-full flex flex-col px-5 mx-auto pb-6 min-h-[calc(100vh-270px)]">
         <div className="pb-6">
           <h1 className="text-[34px] font-semibold max-w-[816px] leading-[40px] dark:text-darkFontPrimary text-fontSecondary text-left">
             Transaction
