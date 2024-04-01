@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { abbreviateString } from '../../../utils/abbreviateString';
 
 const AddressBodyContent = ({
   hash,
@@ -51,16 +52,9 @@ const AddressBodyContent = ({
           </CopyToClipboard>
           <Link to={`/address/${from}`}>
             <span className="text-[14px] text-fontSecondary dark:text-darkFontPrimary leading-[20px] w-[180px] text-ellipsis overflow-hidden whitespace-nowrap block">
-              {from}
+              {abbreviateString(from)}
             </span>
           </Link>
-        </div>
-      </td>
-      <td className="px-2 py-4 m-0 border-t-[1px] text-start dark:border-darkColorSeparator border-colorSeparator">
-        <div className="flex text-start">
-          <span className="w-[35px] rounded px-[5px] py-[6px] text-center font-bold whitespace-nowrap overflow-hidden text-ellipsis text-[10.8px] leading-normal bg-[#eff8ff] dark:bg-[#f7eacc] text-fontSecondary dark:text-[#b47d00]">
-            {state}
-          </span>
         </div>
       </td>
       <td className="px-2 py-4 text-start m-0 border-t-[1px] dark:border-darkColorSeparator border-colorSeparator">
