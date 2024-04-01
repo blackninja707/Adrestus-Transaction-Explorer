@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 
 import { TxPanelHeaderParams } from "../utils/constants/TxParams";
 import { abbreviateString } from "../utils/abbreviateString.js";
+import { timestampConverter } from '../utils/timestampConverter';
 
 const TxBoard = ({ transactions }) => {
   return (
@@ -75,7 +76,7 @@ const TxBoard = ({ transactions }) => {
                     </td>
                     <td className="text-left py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <span className="max-w-[125px] text-fontPrimary">
-                        {item?.creationDate}
+                        {timestampConverter(item?.creationDate)}
                       </span>
                     </td>
                   </tr>

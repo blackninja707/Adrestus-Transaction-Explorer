@@ -14,6 +14,7 @@ const MainLayout = () => {
 
   const appendBlock = useCallback(
     (block) => {
+      if (!block) return
       setBlocks([block, ...blocks].slice(0, 10));
     },
     [blocks]
@@ -27,8 +28,7 @@ const MainLayout = () => {
     },
     [transactions]
   );
-console.log(blocks.length)
-console.log(transactions.length)
+  
   useEffect(() => {
     appendTransaction(transaction);
   }, [transaction]);
@@ -39,7 +39,7 @@ console.log(transactions.length)
 
   useEffect(() => {
     let sock = new SockJS(
-      `${process.env.REACT_APP_SERVER}/websocket-explorer?access_token=12345`
+      `${process.env.REACT_APP_SERVER}/websocket-explorer`
     );
     let stompClient = Stomp.over(sock);
     stompClient.connect(

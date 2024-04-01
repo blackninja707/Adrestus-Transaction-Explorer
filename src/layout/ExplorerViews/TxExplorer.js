@@ -10,6 +10,7 @@ import StateItem from "../../components/ExplorerView/TransactionView/StateItem";
 import AddressItem from "../../components/ExplorerView/TransactionView/AddressItem";
 import ValueItem from "../../components/ExplorerView/TransactionView/ValueItem";
 import TxFeeItem from "../../components/ExplorerView/TransactionView/TxFeeItem";
+import CustomItem from "../../components/ExplorerView/TransactionView/CustomItem";
 
 const TxExplorer = () => {
   const [transaction, setTransaction] = useState(null);
@@ -56,6 +57,7 @@ const TxExplorer = () => {
                 <tbody className="">
                   {transaction && (
                     <>
+                      <StateItem title="Type" value={transaction?.type} />
                       <StateItem title="Status" value={transaction.status} />
                       <HashItem
                         title="Hash"
@@ -72,10 +74,46 @@ const TxExplorer = () => {
                       <AddressItem title="From" value={transaction.from} />
                       <AddressItem title="To" value={transaction.to} />
                       <ValueItem title="Value" value={transaction.amount} />
+                      <CustomItem
+                        title="zoneFrom"
+                        value={transaction?.zoneFrom}
+                      />
+                      <CustomItem
+                        title="zoneTo"
+                        value={transaction?.zoneTo}
+                      />
+                      <CustomItem
+                        title="v"
+                        value={transaction?.v}
+                      />
+                       <CustomItem
+                        title="r"
+                        value={transaction?.r}
+                      />
+                       <CustomItem
+                        title="s"
+                        value={transaction?.s}
+                      />
+                      <CustomItem
+                        title="pub"
+                        value={transaction?.amountWithTransactionFee}
+                      />
                       <TxFeeItem
                         title="Transaction Fee"
                         value={transaction.amountWithTransactionFee}
                       />
+                      <CustomItem
+                        title="nonce"
+                        value={transaction?.nonce}
+                      />
+                      <CustomItem
+                        title="xaxis"
+                        value={transaction?.xaxis}
+                      />
+                      <CustomItem
+                        title="yaxis"
+                        value={transaction?.yaxis}
+                      /> 
                     </>
                   )}
                 </tbody>

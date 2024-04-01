@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { BlockPanelHeaderParams } from "../utils/constants/BlockParams";
 import { abbreviateString } from "../utils/abbreviateString";
+import { timestampConverter } from '../utils/timestampConverter';
 
 const BlockBoard = ({ blocks }) => {
   return (
@@ -31,7 +32,7 @@ const BlockBoard = ({ blocks }) => {
               </tr>
             </thead>
             <tbody>
-              {blocks && blocks.map((item, index) => {
+              {blocks && blocks.length > 0 && blocks.map((item, index) => {
                 return (
                   <tr
                     className="[&>*:last-child]:text-right text-[14px]"
@@ -61,7 +62,7 @@ const BlockBoard = ({ blocks }) => {
                     </td>
                     <td className="text-right py-4 border-b-[1px] border-colorSeparator dark:border-darkColorSeparator">
                       <span className=" text-fontPrimary">
-                        {item?.timestamp || ""}
+                        {timestampConverter(item?.timestamp || "")}
                       </span>
                     </td>
                   </tr>

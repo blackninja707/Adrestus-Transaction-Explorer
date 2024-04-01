@@ -16,14 +16,13 @@ import BlockSizeItem from "../../components/ExplorerView/BlockView/BlockSizeItem
 import filter_block from "../../utils/filterParams/filter_block";
 import { abbreviateString } from "../../utils/abbreviateString";
 import { timestampConverter } from "../../utils/timestampConverter";
+import CustomItem from "../../components/ExplorerView/TransactionView/CustomItem";
 
 const BlockExplorer = () => {
   const { id } = useParams();
   const [blocks, setBlocks] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  let content = filter_block(id);
 
   async function fetchData() {
     setLoading(true); // Begin loading
@@ -48,15 +47,11 @@ const BlockExplorer = () => {
     <>
       <div className="max-w-[1408px] min-w-[343px] w-full flex flex-col px-5 mx-auto pb-6">
         <div className="pb-6">
-          {content.length !== 0 ? (
+          
             <h1 className="text-[28px] font-semibold max-w-[1200px] leading-normal dark:text-darkFontPrimary text-fontSecondary text-left">
               Block # {abbreviateString(id)}
             </h1>
-          ) : (
-            <h1 className="text-[28px] font-semibold max-w-[1200px] leading-normal dark:text-darkFontPrimary text-fontSecondary text-left">
-              Block Doesn't Exist
-            </h1>
-          )}
+        
         </div>
         <div className="rounded-lg overflow-x-auto flex flex-col bg-white dark:bg-darkPrimary p-6 border-[1px] dark:border-darkColorSeparator border-colorSeparator">
           <div className="flex flex-col">
@@ -68,22 +63,33 @@ const BlockExplorer = () => {
                   {blocks && (
                     <>
                       <BlockHashItem title="Hash" value={blocks.blockhash} />
-                      <HeightItem title="Height" value={blocks.height} />
+                      <CustomItem title="version" value={blocks?.version} />
+                      <CustomItem title="PreviousHash" value={blocks?.previousHash} />
                       <TimestampItem
                         title="Timestamp"
                         value={timestampConverter(blocks.timestamp)}
                       />
-                      <TxItem title="Transactions" value="-" />
-                      <StakingTxItem title="Staking Transactions" value="-" />
+                      <CustomItem title="Size" value={blocks?.size} />
+                      <HeightItem title="Height" value={blocks?.height} />
+                      <CustomItem title="Generation" value={blocks?.generation} />
+                      <CustomItem title="ViewID" value={blocks?.viewID} />
+                      <CustomItem title="Zone" value={blocks?.zone} />
                       <AddressItem
                         title="Proposer"
                         value={blocks.transactionProposer}
                       />
-                      <BlockGasLimitItem title="Gas Limit" value="30,00000" />
-                      <BlockGasUsedItem title="Gas Used" value="0" />
-                      <BlockSizeItem title="Size" value={blocks.size} />
-                      <TxItem title="Extra Data" value="-" />
-                      <TxItem title="Logs Bloom" value="-" />
+                       <AddressItem
+                        title="LeaderPublicKey"
+                        value={blocks.leaderPublicKey}
+                      />
+                      <AddressItem
+                        title="MerkleRoot"
+                        value={blocks.merkleRoot}
+                      />
+                       <AddressItem
+                        title="PatriciaMerkleRoot"
+                        value={blocks.patriciaMerkleRoot}
+                      />
                     </>
                   )}
                 </tbody>
