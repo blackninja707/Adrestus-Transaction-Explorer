@@ -1,19 +1,21 @@
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { timestampConverter } from '../../../utils/timestampConverter';
+import { timestampConverter } from "../../utils/timestampConverter";
 
-const AddressBodyContent = ({
-  hash,
-  method,
-  from,
-  state,
-  to,
-  value,
-  timestamp,
+const TransactionBodyContent = ({
+ item
 }) => {
   return (
     <tr>
+      <td className="px-2 py-4 m-0 border-t-[1px] text-start dark:border-darkColorSeparator border-colorSeparator">
+        <div className="flex text-start">
+          <div className="max-w-[125px] text-fontPrimary flex flex-row gap-1 items-center">
+                          {item?.zoneFrom}<span><Icon icon="tdesign:arrow-right" className="text-[#69FABD]" />
+                      </span>{item?.zoneTo}
+          </div>
+        </div>
+      </td>
       <th className="px-2 py-4 text-start m-0 border-t-[1px] dark:border-darkColorSeparator border-colorSeparator">
         <div className="flex flex-row items-center gap-[5px]">
           <CopyToClipboard text="">
@@ -25,9 +27,9 @@ const AddressBodyContent = ({
               className="text-primary dark:text-[#69FABD] mb-1 cursor-pointer"
             />
           </CopyToClipboard>
-          <Link to={`/tx/${hash}`}>
+          <Link to={`/tx/${item?.transaction_hash}`}>
             <span className="text-[14px] text-primary dark:text-[#69FABD] leading-[20px] w-[170px] text-ellipsis overflow-hidden whitespace-nowrap block">
-              {hash}
+              {item?.transaction_hash}
             </span>
           </Link>
         </div>
@@ -35,7 +37,14 @@ const AddressBodyContent = ({
       <td className="px-2 py-4 m-0 border-t-[1px] text-start dark:border-darkColorSeparator border-colorSeparator">
         <div className="flex text-start">
           <p className="w-[100px] block rounded px-1 py-[2px] text-center whitespace-nowrap overflow-hidden text-ellipsis text-[12px] leading-[24px] bg-[#eff8ff] dark:bg-[#3660ad] text-fontSecondary dark:text-darkFontPrimary">
-            {method}
+            {item?.statusType}
+          </p>
+        </div>
+      </td>
+      <td className="px-2 py-4 m-0 border-t-[1px] text-start dark:border-darkColorSeparator border-colorSeparator">
+        <div className="flex text-start">
+          <p className="w-[100px] block rounded px-1 py-[2px] text-start whitespace-nowrap overflow-hidden text-ellipsis text-[12px] leading-[24px] text-fontSecondary dark:text-darkFontPrimary">
+            {item?.blockHeight}
           </p>
         </div>
       </td>
@@ -50,18 +59,11 @@ const AddressBodyContent = ({
               className="text-primary dark:text-[#69FABD] mb-1 cursor-pointer"
             />
           </CopyToClipboard>
-          <Link to={`/address/${from}`}>
+          <Link to={`/address/${item?.fromAddress}`}>
             <span className="text-[14px] text-fontSecondary dark:text-darkFontPrimary leading-[20px] w-[180px] text-ellipsis overflow-hidden whitespace-nowrap block">
-              {from}
+              {item?.fromAddress}
             </span>
           </Link>
-        </div>
-      </td>
-      <td className="px-2 py-4 m-0 border-t-[1px] text-start dark:border-darkColorSeparator border-colorSeparator">
-        <div className="flex text-start">
-          <span className="w-[35px] rounded px-[5px] py-[6px] text-center font-bold whitespace-nowrap overflow-hidden text-ellipsis text-[10.8px] leading-normal bg-[#eff8ff] dark:bg-[#f7eacc] text-fontSecondary dark:text-[#b47d00]">
-            {state}
-          </span>
         </div>
       </td>
       <td className="px-2 py-4 text-start m-0 border-t-[1px] dark:border-darkColorSeparator border-colorSeparator">
@@ -75,9 +77,9 @@ const AddressBodyContent = ({
               className="text-primary dark:text-[#69FABD] mb-1 cursor-pointer"
             />
           </CopyToClipboard>
-          <Link to={`/address/${to}`}>
+          <Link to={`/address/${item?.toAddress}`}>
             <span className="text-[14px] text-primary dark:text-[#69FABD] leading-[20px] w-[180px] text-ellipsis overflow-hidden whitespace-nowrap block">
-              {to}
+              {item?.toAddress}
             </span>
           </Link>
         </div>
@@ -85,14 +87,14 @@ const AddressBodyContent = ({
       <td className="px-2 py-4 m-0 border-t-[1px] text-start dark:border-darkColorSeparator border-colorSeparator">
         <div className="flex text-start">
           <span className="w-full rounded font-bold text-[14px] leading-[20px] text-start text-fontSecondary dark:text-darkFontPrimary">
-            {value}&nbsp;ADR
+            {item?.amount}&nbsp;ADR
           </span>
         </div>
       </td>
       <td className="px-2 py-4 m-0 border-t-[1px] text-start dark:border-darkColorSeparator border-colorSeparator">
         <div className="flex text-start">
           <span className="w-full min-w-[125px] rounded font-normal text-[14px] leading-[20px] text-start text-[#5f98c7]">
-            {timestampConverter(timestamp)}
+            {timestampConverter(item?.creationDate)}
           </span>
         </div>
       </td>
@@ -100,4 +102,4 @@ const AddressBodyContent = ({
   );
 };
 
-export default AddressBodyContent;
+export default TransactionBodyContent;

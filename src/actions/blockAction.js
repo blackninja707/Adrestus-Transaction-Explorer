@@ -12,10 +12,10 @@ export const getBlockByHash = async (hash) => {
   }
 };
 
-export const findAllBlocksBetweenRange = async (firstNum, blockPerPage) => {
+export const findAllBlocksBetweenRange = async (currentPage, blockPerPage) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER}/api/v1/explorer/findAllBlocksBetweenRange/${firstNum * blockPerPage}/${(firstNum + 1) * blockPerPage}`
+      `${process.env.REACT_APP_SERVER}/api/v1/explorer/findAllBlocksBetweenRange/${currentPage * blockPerPage}/${(currentPage + 1) * blockPerPage}`
     );
     console.log("response blocks between Range", response.data);
     return response.data;

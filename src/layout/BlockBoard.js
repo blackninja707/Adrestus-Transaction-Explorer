@@ -31,7 +31,7 @@ const BlockBoard = ({ blocks }) => {
               </tr>
             </thead>
             <tbody>
-              {blocks.map((item, index) => {
+              {blocks && blocks.map((item, index) => {
                 return (
                   <tr
                     className="[&>*:last-child]:text-right text-[14px]"

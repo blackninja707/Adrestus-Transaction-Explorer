@@ -4,9 +4,9 @@ import { Icon } from "@iconify/react";
 
 import { findAllTransactionsBetweenRange } from "../../actions/transactionAction";
 import PaginationTemp from "../../components/PaginationTemp";
-import AddressHeader from "../../components/ExplorerView/AddressView/AddressHeader";
-import AddressBodyContent from "../../components/ExplorerView/AddressView/AddressBodyContent";
 import CSVExport from "../../components/ExplorerView/AddressView/CSVExport";
+import BlocksExplorer from "./BlocksExplorer";
+import TransactionBodyContent from './TransactionBodyContent';
 
 const TransactionsExplorer = () => {
   const id = useParams();
@@ -14,18 +14,21 @@ const TransactionsExplorer = () => {
   const [transactions, setTransactions] = useState(null);
   const [txPerPage, setTxPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
-  const [account, setAccount] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const handleSelectChange = (event) => {
+    setTxPerPage(event.target.value);
+  };
+
   useEffect(() => {
     fetchData();
-  } ,[currentPage])
+  } ,[currentPage, txPerPage])
 
   async function fetchData() {
     setLoading(true); // Begin loading
     try {
-      const fetchedTransactions = await findAllTransactionsBetweenRange(currentPage, 10);
+      const fetchedTransactions = await findAllTransactionsBetweenRange(currentPage, txPerPage);
       setTransactions(fetchedTransactions)
       console.log("Tx:", transactions);
     } catch (error) {
@@ -57,28 +60,28 @@ const TransactionsExplorer = () => {
                 id="Scrollbar"
               >
                 <table className="w-full min-w-[1266px] table-auto relative border-spacing-0 border-separate h-full max-h-[1266px] overflow-y-hidden">
-                  <AddressHeader />
                   <tbody className="max-h-[1266px] overflow-y-hidden">
                     {transactions &&
                       transactions
                         .map((item, index) => (
-                          <AddressBodyContent
+                          <TransactionBodyContent
                             key={index}
-                            hash={item.transaction_hash}
-                            method={item.statusType}
-                            from={item.fromAddress}
-                            state="OUT"
-                            to={item.toAddress}
-                            value={item.amount}
-                            timestamp={item.creationDate}
+                            item={item}
                           />
                         ))}
                   </tbody>
                 </table>
               </div>
               <div className="pt-6 flex flex-row justify-between items-center">
-                <div className="flex flex-row gap-4">
-                  <div className=""></div>
+                <div className="flex flex-row gap-4 items-center">
+                <div className="flex items-center justify-between flex-row border">
+                    <select value={txPerPage} onChange={handleSelectChange} className="block appearance-none w-full bg-transparent border border-gray-400 hover:border-gray-500 hover:cursor-pointer px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                      <option value={10}>10</option>
+                      <option value={25}>25</option>
+                      <option value={50}>50</option>
+                      <option value={100}>100</option>
+                    </select>
+                  </div>
                   <span className="dark:text-white text-[14px] leading-[1.5em] text-[#55626D]">records per page</span>
                 </div>
                 <PaginationTemp currentPage={currentPage} setCurrentPage={setCurrentPage} />
