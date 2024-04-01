@@ -39,7 +39,7 @@ export const GetTransactionsByBlockHash = async (blockHash) => {
 export const findAllTransactionsBetweenRange = async (currentPage, txPerPage) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER}/api/v1/explorer/findAllTransactionsBetweenRange/${currentPage * txPerPage}/${(currentPage+1) * txPerPage}`
+      `${process.env.REACT_APP_SERVER}/api/v1/explorer/findAllTransactionsBetweenRange/${currentPage * txPerPage}/${txPerPage}`
     );
     console.log("response transactions between Range", response.data);
     return response.data;

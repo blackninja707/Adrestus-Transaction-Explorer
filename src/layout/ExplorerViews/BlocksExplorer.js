@@ -75,7 +75,7 @@ const BlocksExplorer = () => {
               <div className="pt-6 flex flex-row justify-between items-center">
                 <div className="flex flex-row gap-4 items-center">
                   <div className="flex items-center justify-between flex-row border">
-                    <select value={blockPerPage} onChange={handleSelectChange} className="block appearance-none w-full bg-transparent border border-gray-400 hover:border-gray-500 hover:cursor-pointer px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <select value={blockPerPage} onChange={handleSelectChange} className="block appearance-none w-full bg-transparent border border-gray-400 hover:border-gray-500 hover:cursor-pointer px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline dark:text-white">
                       <option value={10}>10</option>
                       <option value={25}>25</option>
                       <option value={50}>50</option>

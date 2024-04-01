@@ -12,8 +12,6 @@ import AddressHeader from "../../components/ExplorerView/AddressView/AddressHead
 import AddressBodyContent from "../../components/ExplorerView/AddressView/AddressBodyContent";
 import CSVExport from "../../components/ExplorerView/AddressView/CSVExport";
 
-import filter_address from "../../utils/filterParams/filter_address";
-
 const AddressExplorer = () => {
   const { id } = useParams();
 
