@@ -67,6 +67,10 @@ const TxExplorer = () => {
                         title="Block Hash"
                         value={transaction.blockModel.blockhash}
                       />
+                      <CustomItem
+                        title="Height"
+                        value={transaction?.blockModel?.height}
+                      />
                       <TimestampItem
                         title="Timestamp"
                         value={transaction.timestamp}
