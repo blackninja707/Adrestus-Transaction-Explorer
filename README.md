@@ -1,4 +1,3 @@
-
 #Adrestus Transaction Explorer
 
 React, Recoil, Tailwind CSS
